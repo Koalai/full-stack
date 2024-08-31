@@ -10,8 +10,8 @@ body {
 }
 
 img{
-  height: 40px;
-  width: 40px;
+  height: 20px;
+  width: 20px;
 }
 
 .grid {
@@ -32,7 +32,6 @@ img{
   justify-content: flex-start;
   align-items: center;
   margin: 20px 50px;
-  margin-bottom: 50px;
 }
 
 .logo-text h1 {
@@ -61,7 +60,7 @@ img{
   background-color: white;
   height: 100vh;
   display: grid;
-  grid-template-rows: 30% 70%;
+  grid-template-rows: 15% 85%;
 }
 
 .header {
@@ -87,10 +86,12 @@ img{
   margin-right: 200px;
 }
 
-.avatarNavbar,
-.avatarWelcome {
+.avatarProfile {
   margin: 0 20px;
+  height: 40px;
+  width: 40px;
 }
+
 .welcome {
   display: flex;
   flex-direction: row;
@@ -117,7 +118,7 @@ img{
   border-radius: 20px;
 }
 .content {
-  background-color: #d4d4d4;
+  background-color: #e1e7e8;
   display: grid;
   grid-template-columns: 70% 30%;
 }
@@ -131,37 +132,42 @@ img{
   background-color: white;
   border-left: 5px solid #facc15;
   border-radius: 10px;
-  width: 80%;
-  height: 150px;
-  margin: 15px 0;
-  margin-left: 20px;
+  height: 170px;
+  margin: 15px 20px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
   padding-left: 10px;
 }
 
-.icons {
+.card-icons {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: center;
-  width: 90%;
+  gap: 15px;
+  margin-right: 20px;
 }
 
 h6 {
   font-size: 16px;
 }
-card p {
+
+.card p {
   font-size: 13px;
   color: #d4d4d4;
   margin: 10px 0;
 }
 
 h4 {
-  margin-left: 25px;
   margin-top: 20px;
+}
+ 
+.trend > h4 {
+  margin-bottom: 10px;
+ }
+
+ .projects > h4 {
+  margin-left: 25px;
 }
 
 .ann-trend {
@@ -169,16 +175,23 @@ h4 {
   grid-template-rows: 50% 50%;
 }
 
-.ann-card,
-.trend-card {
-  height: 80%;
+.ann-card {
+  height: 90%;
   width: 80%;
   background-color: white;
   border-radius: 5px;
+  margin-top: 15px;
+}
+.trend-card {
+  height:70%;
+  width: 80%;
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .ann-text {
-  padding: 5px 10px;
+  padding: 10px 10px;
 }
 
 .ann-text h6,
@@ -209,7 +222,7 @@ h4 {
   flex-direction: row;
   align-items: center;
   margin: 0px 20px;
-  padding: 13px 0;
+  padding-top: 15px;
 }
 
 .trend-text {

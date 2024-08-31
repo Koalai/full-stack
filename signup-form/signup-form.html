@@ -8,92 +8,68 @@
     <link rel="stylesheet" href="signup-form-styles.css" />
   </head>
   <body>
-    <div class="img">
-      <div class="img-logo">
-        <img src="/image/odin-lined.png" alt="Odin Logo" class="odin-img" />
-      </div>
-    </div>
+    <div class="img"></div>
     <div class="form">
       <div class="form-info">
         <h1>
-          This is not a real online service! You know you need somthing like
-          this in your life to help you realize your deepest dreams. Sign up
-          <i>now</i> to get started. <br /><br />
-          You <i>know</i> you want to.
+          This is not a real online service! You know you need something like
+          this in your life to help you realize your deepest dreams.
+          <br />Sign up <i>now</i> to get started.
+          <div margin="32px 0 0 0">You <i>know</i> you want to.</div>
         </h1>
       </div>
       <form action="">
         <h1>Let's do this!</h1>
-        <div class="inputs">
-          <div class="first-name">
-            <input
-              required
-              type="text"
-              class="form-input"
-              id="first-name"
-              placeholder="First Name"
-            />
-            <label for="first-name" class="form-label">First name:</label>
+        <div class="input-container">
+          <div class="inputs">
+            <div class="first-name">
+              <label for="first-name" class="form-label">First name:</label>
+              <input required type="text" class="form-input" id="first-name" />
+            </div>
           </div>
-          <div class="last-name">
-            <input
-              required
-              type="text"
-              class="form-input"
-              id="last-name"
-              placeholder="Last Name"
-            />
-            <label for="last-name" class="form-label">Last name:</label>
+          <div class="inputs">
+            <div class="last-name">
+              <label for="last-name" class="form-label">Last name:</label>
+              <input required type="text" class="form-input" id="last-name" />
+            </div>
           </div>
-        </div>
-        <div class="inputs">
-          <div class="email">
-            <input
-              required
-              type="email"
-              class="form-input"
-              id="email"
-              placeholder="Email"
-            />
-            <label for="email" class="form-label">Email:</label>
+          <div class="inputs">
+            <div class="email">
+              <label for="email" class="form-label">Email:</label>
+              <input required type="email" class="form-input" id="email" />
+            </div>
           </div>
-          <div class="phone">
-            <input
-              required
-              type="text"
-              class="form-input"
-              id="phone"
-              placeholder="Phone"
-            />
-            <label for="phone" class="form-label">Phone:</label>
+          <div class="inputs">
+            <div class="phone">
+              <label for="phone" class="form-label">Phone:</label>
+              <input required type="text" class="form-input" id="phone" />
+            </div>
           </div>
-        </div>
-        <div class="inputs">
-          <div class="password">
-            <input
-              required
-              type="text"
-              class="form-input"
-              id="password"
-              placeholder="Password"
-            />
-            <label for="password" class="form-label">Password:</label>
+          <div class="inputs">
+            <div class="password">
+              <label for="password" class="form-label">Password:</label>
+              <input required type="text" class="form-input" id="password" />
+            </div>
           </div>
-          <div class="confirm-password">
-            <input
-              required
-              type="text"
-              class="form-input"
-              id="confirm-password"
-              placeholder="Confirm Password"
-            />
-            <label for="confirm-password" class="form-label"
-              >Confirm Password:</label
-            >
+          <div class="inputs">
+            <div class="confirm-password">
+              <label for="confirm-password" class="form-label"
+                >Confirm Password:</label
+              >
+              <input
+                required
+                type="text"
+                class="form-input"
+                id="confirm-password"
+              />
+            </div>
           </div>
         </div>
+
         <div class="form-end">
-          <button class="btn" type="submit">Create Account</button>
+          <button class="create-account-btn" type="submit">
+            Create Account
+          </button>
           <h1>Already have an account? <a href="" class="login">Log in</a></h1>
         </div>
       </form>

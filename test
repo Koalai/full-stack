@@ -1,0 +1,32 @@
+const projects = ["dashboard-project", "signup-form-project", "library-project"];
+//  const projectResultUrl = projects.map()
+//  map la mot method cua mang 
+//  nhan vao sau do se di qua tung phan tu co trong mang, 
+// sau do thuc hien cac phep tinh 
+
+// goi mot ham callback da duoc dinh nghia tren tung phan tu cua mang, 
+// sau do tra ve mot mang chua nhung ket qua da duoc thuc thi 
+let result = []
+function myMap(callback) {
+    for (let i = 0; i < this.length; i++) {
+        result.push(callback(this[i]));
+        return result;         
+    }
+}
+let arr =[1,2,3]
+Array.prototype.newMap = myMap
+let arr3 = arr.newMap((num) => {
+    return num + 1;
+})
+
+(num) => {
+    return num + 1;
+}
+function add(a,b) {
+    return a + b;
+}
+add(5, 12)
+add(function hello(){}, function khoa(){});
+// projects.newMap()
+projects.newMap()
+

@@ -1,0 +1,20 @@
+.main {
+    text-align: center;
+}
+
+#board-game {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 200px;
+    margin: auto;
+    
+}
+
+.box {
+    width: 65px;
+    height: 65px;
+    border: 2px solid;
+    box-shadow: 0 0 0 2px;
+}
+
+

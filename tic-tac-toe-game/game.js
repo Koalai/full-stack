@@ -16,8 +16,13 @@ let winConditions = [
     [2, 4, 6]
 ]
 
+initializationGame()
 
 function initializationGame() {
+    cells.forEach(cell => cell.addEventListener('click', cellClicked));
+    restartBtn.addEventListener('click', restartGame);
+    textStatus.textContent = `It's ${currentPlayer}'s turn !`
+    gameRunning = true;
 }
    
 function cellClicked() {

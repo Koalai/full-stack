@@ -26,15 +26,25 @@ function initializationGame() {
 }
    
 function cellClicked() {
+    let cellIndex = this.getAttribute('Data-index');
 
+    if (holder[cellIndex] !== "" || !gameRunning) {
+        return;
+    }
+    // I want everytime i clicked, it always 
+    // update the cell and check if there is a winner of not.
+    // So i call 2 of it
+    updateCell(this, cellIndex);
+    checkWinner()
 }
 function updateCell(cell, index) {
-}
+
 
 function changePlayer() {
-}
+
 
 function checkWinner() {
+
 }
 
 function restartGame() {

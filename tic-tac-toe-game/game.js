@@ -34,12 +34,15 @@ function cellClicked() {
     // I want everytime i clicked, it always 
     // update the cell and check if there is a winner of not.
     // So i call 2 of it
+    // this toggle to the cell, because cell has call it in the line 22,
+    // and the cellIndex toggle to the index of cell
     updateCell(this, cellIndex);
     checkWinner()
 }
 function updateCell(cell, index) {
-
-
+    holder[index] = currentPlayer;
+    cell.textContent = currentPlayer;
+}
 function changePlayer() {
 
 

@@ -46,10 +46,41 @@ function updateCell(cell, index) {
 function changePlayer() {
     currentPlayer = (currentPlayer === "X") ? "O" : "X";
     textStatus.textContent = `It's ${currentPlayer}'s turn !`
-function checkWinner() {
-
 }
-
+function checkWinner() {
+    let gameOver = false;
+    for (let i = 0; i < winConditions.length; i++) {
+        // loop through the winConditions and check for each case
+        let condition = winConditions[i]
+        // check between the holder and the condition to see if they match
+        let cellA = holder[condition[0]]
+        let cellB = holder[condition[1]]
+        let cellC = holder[condition[2]]
+        
+        // if one of three still a empty string, then continue
+        if (cellA === "" || cellB === "" || cellC === "") {
+            continue;
+        }
+        // if they equal, set the gameOver to true and break the loop
+        if (cellA === cellB && cellB === cellC) {
+            gameOver = true;
+            break;
+        }
+    }
+    // if game over, we want to display the the winner,
+    // turn off the game
+    // check if there is a draw or not
+    // if dont just continue the game
+    if (gameOver) {
+        textStatus.textContent = `The winner is ${currentPlayer}`
+        gameRunning = false
+    } else if (!holder.includes("")) {
+        textStatus.textContent = `We have a draw !`
+        gameRunning= false
+    }else {
+        changePlayer();
+   }
+}
 function restartGame() {
 
 }

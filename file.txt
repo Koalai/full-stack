@@ -1,4 +1,0 @@
-javascripts duoc thiet ke de chay tren trinh duyet 
-de chay javascripts tren trinh duyet, bam chuot phai chon inspect, chon console
-de chay javascripts ngoai trinh duyet browser, phai dung moi truong nodejs
-cu phap chay javascripts bang nodejs la: node <file javascripts>

@@ -1,5 +1,6 @@
-import pageLoad from './pageLoad'
+import "./styles.css";
+import initialLoad from './pageLoad.js';
 
+initialLoad();
 
-pageLoad();
 

@@ -1,6 +1,6 @@
-/* body {
+body {
 background-image:  url("../image/background.jpg") no-repeat;
-} */
+}
 nav {
     display: flex;
     justify-content: center;

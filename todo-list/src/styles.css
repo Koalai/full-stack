@@ -20,12 +20,34 @@ img {
 .icon-text {
     display: flex;
     flex-direction: row;
-    margin: 30px 20px;
+    margin: 20px 20px;
 }
 
 h1 {
     font-size: 25px;
     padding-left: 10px;
+}
+
+.projects {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+
+}
+
+.projects > p {
+    font-size: 20px;
+    padding-right: 20px;
+}
+
+.projects-icons{
+    display: flex;
+    align-items: center;
+}
+.projects-icons > img {
+    width: 30px;
+    height: 30px;
+
 }
 
 .content {

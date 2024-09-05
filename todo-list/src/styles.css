@@ -4,7 +4,7 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: 35% 65%;
+    grid-template-columns: 20% 80%;
 }
 
 .sidebar {
@@ -53,4 +53,35 @@ h1 {
 .content {
    text-align: center;
    font-size: 35px;
+   display: flex;
+   flex-direction: column;
 }  
+
+.add-project-box {
+    border: 2px solid black;
+    width: 26vw;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
+
+.add-project-box > h2 {
+    font-size: 20px;
+}
+
+label {
+    font-size: 16px;
+}
+
+.add-project-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-btn {
+    display: flex;
+    justify-content: space-evenly;
+}

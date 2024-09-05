@@ -40,13 +40,30 @@
         <div class="projects">
           <p>My projects</p>
           <div class="projects-icons">
-            <img src="../image/plus.svg" alt="Add project" />
-            <img src="../image/chevron-down.svg" alt="View project" />
+            <img src="../image/plus.svg" alt="Add project" id="add-project" />
+            <img src="../image/chevron-down.svg" alt="View project" id="view-project"/>
           </div>
         </div>
       </div>
       <div class="content">
         <h1>My Todo App</h1>
+        <div class="add-project-box" style="display: none;">
+          <h2>Create your new project here</h2>
+          <form class="add-project-form" >
+            <div class="project-name-input">
+              <label for="project-name">Project Name:</label>
+              <input
+                type="text"
+                id="create-project-input"
+                placeholder="E.x: Summer workout"
+              />
+            </div>
+            <div class="form-btn">
+              <button type="submit" class="submit-btn">Create</button>
+              <button class="cancel-btn">Cancel</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </body>

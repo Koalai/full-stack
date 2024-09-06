@@ -5,6 +5,6 @@ export class Todo {
         this.title = title;
         this.descriptions;
         this.dueDate = dueDate;
-        this.priority = priority
+        this.priority = priority;
     }
 }

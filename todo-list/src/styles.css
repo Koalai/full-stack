@@ -67,31 +67,64 @@ h1 {
    flex-direction: column;
 }  
 
-.add-project-box {
+.add-project-box, .add-task-box {
     border: 2px solid black;
-    width: 26vw;
-    height: 200px;
+    width: 22vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: auto;
+    padding: 30px 80px 50px;
 }
 
-.add-project-box > h2 {
-    font-size: 20px;
+.add-project-box, .add-task-box > h2 {
+    font-size: 22px;
 }
 
 label {
     font-size: 16px;
+    text-align: left;
+}
+.project-submit-btn, .task-submit-btn{
+   background-color: #F4D03F;
+   width: 70px;
+   height: 30px;
+   border-radius: 5px;
+   font-size: 16px;
 }
 
-.add-project-form {
+.project-cancel-btn, .task-cancel-btn {
+    background-color: red;
+    color: white;
+    width: 70px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.add-project-form, .add-task-form {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 5px;
 }
 
-.form-btn {
+.project-name-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-form-btn {
     display: flex;
     justify-content: space-evenly;
 }
+
+input#descriptions {
+    height: 100px;
+}
+
+input {
+    height: 26px;
+}
+
+
+

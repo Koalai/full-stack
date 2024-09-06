@@ -13,7 +13,7 @@ openProjectForm.addEventListener("click", () => {
   formContainer.style.display = "block"
 })
 
-const cancelBtn = document.querySelector(".cancel-btn")
+const cancelBtn = document.querySelector(".project-cancel-btn")
 cancelBtn.addEventListener("click", () => {
   formContainer.style.display = "none"
 })
@@ -45,8 +45,7 @@ function hideProjects() {
 
 // change the view button to view or hide projects
 const viewProjectBtn = document.querySelector("#view-project-btn")
-let toggleOpen = true
-
+let toggleOpen = true;
 
 viewProjectBtn.addEventListener("click", () => {
   if (toggleOpen) {
@@ -55,7 +54,8 @@ viewProjectBtn.addEventListener("click", () => {
       toggleOpen = false
   } else {
     viewProjectBtn.src = toggleDown
-      viewProjects()
+    viewProjects();
       toggleOpen = true
       }
 })
+

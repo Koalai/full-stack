@@ -13,7 +13,7 @@
             <img src="../image/list-box-outline.svg" alt="Todo list" />
             <h1>Todo List</h1>
           </div>
-          <div class="icon-text">
+          <div class="icon-text" id="add-task">
             <img src="../image/plus-circle-outline.svg" alt="Add task" />
             <h1>Add task</h1>
           </div>
@@ -76,19 +76,19 @@
         </div>
 
         <!-- Create add task form -->
-        <div class="add-task-box" style="display: block">
+        <div class="add-task-box" style="display: none">
           <h2>Create your new task</h2>
           <form class="add-task-form">
             <label for="task-name">Title:</label>
             <input type="text" id="task-name" placeholder="E.g: Warm up" />
-            <label for="task-name">Descriptions:</label>
-            <input type="text" id="descriptions" />
-            <label for="task-name">Due date:</label>
-            <input type="text" id="due-date" />
-            <label for="task-name">Project:</label>
-            <input type="text" id="project" />
-            <label for="task-name">Priority:</label>
-            <input type="text" id="priority" />
+            <label for="task-descriptions">Descriptions:</label>
+            <input type="text" id="task-descriptions" />
+            <label for="task-due-date">Due date:</label>
+            <input type="date" id="task-due-date" />
+            <label for="task-project">Project:</label>
+            <select id="task-project"></select>
+            <label for="task-priority">Priority:</label>
+            <select id="task-priority"></select>
             <div class="task-form-btn">
               <button type="submit" class="task-submit-btn">Create</button>
               <button class="task-cancel-btn">Cancel</button>

@@ -1,8 +1,15 @@
-
+import { Todo } from "./todo.js"
 
 export class Project {
-    constructor(name) {
-        this.name = name;
-    }
+  todoList = []
+  constructor(name) {
+    this.name = name
+  }
+  addTodo(todo) {
+    this.todoList.push(todo)
+  }
 }
+
+export const projects = [];
+
 

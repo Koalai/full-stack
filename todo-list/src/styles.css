@@ -23,6 +23,13 @@ img {
     margin: 20px 20px;
 }
 
+.icon-text:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+
+
+
 h1 {
     font-size: 25px;
     padding-left: 10px;
@@ -118,13 +125,15 @@ label {
     justify-content: space-evenly;
 }
 
-input#descriptions {
-    height: 100px;
-}
-
-input {
+input{
     height: 26px;
 }
 
+#task-descriptions {
+    height: 100px
+}
 
+select {
+    height: 32px;
+}
 

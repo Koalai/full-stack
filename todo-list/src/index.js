@@ -112,6 +112,22 @@ function displayProjectsToSelect() {
   })
 }
 
+// const options = document.querySelector('.option-select').value;
+const taskPriority = document.querySelector('#task-priority')
+
+
+function updateColorPriority() {
+  let priorityOptions = taskPriority.options[taskPriority.selectedIndex]
+  let priorityColor = priorityOptions.style.color;
+
+  taskPriority.style.color = priorityColor
+}
+
+updateColorPriority()
+
+taskPriority.addEventListener('change', updateColorPriority);
+
+
 taskForm.addEventListener("submit", (event) => {
   event.preventDefault()
 

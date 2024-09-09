@@ -1,9 +1,10 @@
 import { Todo } from "./todo.js"
-
+import { v4 as uuidv4 } from 'uuid';
 export class Project {
   todoList = []
-  constructor(name) {
-    this.name = name
+  constructor(name,id) {
+    this.name = name,
+      this.id = uuidv4();
   }
   addTodo(todo) {
     this.todoList.push(todo)

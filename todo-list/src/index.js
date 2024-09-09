@@ -49,18 +49,23 @@ const cancelFormBtn = document.querySelector(".project-cancel-btn")
 cancelFormBtn.addEventListener("click", () => {
   closeProjectForm()
 })
-let editingIndex = null;
+let editingIdProject = null
 
 const submitFormBtn = document.querySelector(".project-submit-btn")
 const projectNameInput = document.querySelector("#project-name-input")
 submitFormBtn.addEventListener("click", () => {
-  if (editingIndex !== null) {
-    projects[editingIndex].name = projectNameInput.value;
-    editingIndex = null
+  if (editingIdProject !== null) {
+    const projectToEdit = projects.find(p => p.id === editingIdProject);
+    if (projectToEdit) {
+      projectToEdit.name = projectNameInput.value
+    }
+    editingIdProject = null
   } else {
     const project = new Project(projectNameInput.value)
-      projects.push(project)
+    projects.push(project)
   }
+
+
   viewProjectSection()
   projectNameInput.value = ""
   closeProjectForm()
@@ -70,7 +75,7 @@ const projectContainer = document.querySelector(".projects-container") // projec
 function viewProjectSection() {
   projectContainer.innerHTML = ""
   projects.forEach((currentProject, projectIndex) => {
-    projectContainer.innerHTML += `<div class="project" data-id="${currentProject.name}">
+    projectContainer.innerHTML += `<div class="project">
       <p>${currentProject.name}</p>
       <div class="edit-del-btn">
        <img src="../image/pencil.svg" alt="Edit" class="edit-project-btn">
@@ -88,11 +93,11 @@ function viewProjectSection() {
     })
 
     const editButtons = document.querySelectorAll(".edit-project-btn")
-    editButtons.forEach((currentEditBtn, currentProjectIndex) => {
+    editButtons.forEach((currentEditBtn) => {
       currentEditBtn.addEventListener("click", () => {
         projectNameInput.value = currentProject.name
         openProjectForm()
-        editingIndex = currentProjectIndex
+        editingIdProject = currentProject.id
       })
     })
   })
@@ -165,7 +170,6 @@ taskForm.addEventListener("submit", (event) => {
 
   closeTaskForm()
   displayTodoList()
-  log()
 })
 
 let taskList = document.querySelector(".todo-list")
@@ -188,6 +192,8 @@ const displayTodoList = () => {
           </div>`
 
       taskList.append(taskCard)
+
+      const delTaskBtn = document.querySelectorAll(".del-task-btn")
     })
   })
 }

@@ -128,14 +128,13 @@ addTaskBtn.addEventListener("click", () => {
     displayProjectsToSelect()
   }
 })
-cancelTaskBtn.addEventListener('click', () => {
+cancelTaskBtn.addEventListener("click", () => {
   if (!isProjectFormOpened && isTaskFormOpened) {
     closeTaskForm()
     viewProjectSection()
     displayTodoList()
   }
 })
-
 
 const projectTask = document.querySelector("#task-project")
 function displayProjectsToSelect() {
@@ -192,6 +191,7 @@ taskSubmitForm.addEventListener("click", () => {
 
   closeTaskForm()
   displayTodoList()
+  // displayTodayTask()
 })
 
 function closeTodoList() {
@@ -234,19 +234,35 @@ const displayTodoList = () => {
           editingIdTask = task.id
         })
       })
-
-      let currentTime = new Date().getTime()
-      const todayTask = document.querySelector("#today-task")
-      const upcomingTask = document.querySelector("#upcoming-task")
-      const overduedTask = document.querySelector("overdued-task")
-
-      const dueDateTime = new Date(task.dueDate).getTime()
-      if (dueDateTime < currentTime) {
-        overduedTask.addEventListener('click', () => {
-          console.log('Hi')
-        })
-      }
     })
   })
 }
 
+let currentTime = new Date().getTime()
+const displayTodayTask = () => {
+  taskList.innerHTML = ""
+  projects.forEach((currentProject) => {
+    const todayTask = currentProject.todoList.find(
+      (task) => task.dueDate.getTime() === currentTime
+    )
+    todayTask.forEach((t) => {
+      let taskCard = document.createElement("div")
+
+      taskCard.innerHTML = `<div class="card">
+          <div class="card-text">
+            <h4>${task.title}</h4>
+            <p>${task.dueDate}</p>
+            <p>${task.descriptions}</p>
+          </div>
+          <div class="card-icons">
+            <img src="../image/pencil.svg" alt="Edit" class="edit-task-btn">
+            <img src="../image/delete.svg" alt="Delete" class="del-task-btn">
+          </div>
+          </div>`
+      taskList.append(taskCard)
+    })
+  })
+}
+
+const todayTaskToggle = document.querySelector("#today-task")
+todayTaskToggle.addEventListener("click", () => displayTodayTask())

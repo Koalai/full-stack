@@ -160,6 +160,7 @@ taskPriority.addEventListener("change", updateColorPriority)
 // submit task
 
 let editingIdTask = null
+
 taskSubmitForm.addEventListener("click", () => {
   const titleTask = document.querySelector("#task-name").value
   const descriptionsTask = document.querySelector("#task-descriptions").value
@@ -233,31 +234,19 @@ const displayTodoList = () => {
           editingIdTask = task.id
         })
       })
+
+      let currentTime = new Date().getTime()
+      const todayTask = document.querySelector("#today-task")
+      const upcomingTask = document.querySelector("#upcoming-task")
+      const overduedTask = document.querySelector("overdued-task")
+
+      const dueDateTime = new Date(task.dueDate).getTime()
+      if (dueDateTime < currentTime) {
+        overduedTask.addEventListener('click', () => {
+          console.log('Hi')
+        })
+      }
     })
   })
 }
 
-let currentTime = new Date().getTime()
-const todayTask = document.querySelector("#today-task")
-const upcomingTask = document.querySelector("#upcoming-task")
-const overduedTask = document.querySelector("overdued-task")
-
-
-projects.forEach((currentProject) => {
-  currentProject.todoList.forEach((currentTask) => {
-    const givenTime = new Date(currentTask.dueDate).getTime()
-    if (givenTime < currentTime) {
-      overduedTask.addEventListener('click', () => {
-        alert('overdue')
-      })
-    } else if (givenTime > currentTime) {
-      upcomingTask.addEventListener('click', () => {
-        alert('upcoming')
-      })
-    } else {
-      todayTask.addEventListener("click", () => {
-        alert("Hi")
-      })
-    }
-  })
-})

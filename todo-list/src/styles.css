@@ -58,7 +58,7 @@ h1 {
     height: 30px;
 }
 
-.view-projects {
+.projects-container {
     margin-top: 20px;
 }
 
@@ -182,4 +182,8 @@ select {
     height: 20px;
 }
 
+.edit-task-btn, .del-task-btn {
+    width: 24px;
+    height: 24px;   
+} 
 

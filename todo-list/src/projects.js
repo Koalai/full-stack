@@ -10,6 +10,6 @@ export class Project {
   }
 }
 
-export const projects = [];
+export let projects = [];
 
 

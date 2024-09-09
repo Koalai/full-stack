@@ -5,11 +5,12 @@ body {
 .grid {
     display: grid;
     grid-template-columns: 20% 80%;
+    height: 100vh;
 }
 
 .sidebar {
     background-color: #F4D03F;
-    height: 100vh;
+    height: 100%;
 }
 
 img {
@@ -43,7 +44,7 @@ h1 {
 }
 
 .projects-headers > p {
-    font-size: 20px;
+    font-size: 24px;
     padding-right: 20px;
 }
 
@@ -55,16 +56,17 @@ h1 {
 .projects-icons > img {
     width: 30px;
     height: 30px;
-
 }
 
 .view-projects {
     margin-top: 20px;
 }
 
-.project-div {
-    margin-left: 20px;
-    font-size: 18px;
+.project {
+    margin-left: 30px;
+    font-size: 20px;
+    display: flex;
+    gap: 20px;
 }
 
 .content {
@@ -81,16 +83,22 @@ h1 {
     flex-direction: column;
     justify-content: center;
     margin: auto;
-    padding: 30px 80px 50px;
+    padding: 30px 60px;
 }
 
-.add-project-box, .add-task-box > h2 {
-    font-size: 22px;
+.add-project-box > h2 {
+    font-size: 24px;
+}
+
+.add-task-box > h2 {
+    font-size: 24px;
 }
 
 label {
     font-size: 16px;
     text-align: left;
+    color: blue;
+    margin-top: 10px;
 }
 .project-submit-btn, .task-submit-btn{
    background-color: #F4D03F;
@@ -123,6 +131,7 @@ label {
 .project-form-btn {
     display: flex;
     justify-content: space-evenly;
+    margin-top: 20px;
 }
 
 input{
@@ -136,4 +145,41 @@ input{
 select {
     height: 32px;
 }
+
+.todo-list {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.card {
+    margin-left: 20px;
+    display: flex;
+    width: 200px;
+    height: 130px;
+    box-shadow: rgba(0, 0, 0, 0.15) -8px 1px 5px, rgba(0, 0, 0, 0.15) 0px -3px 5px;
+    border-radius: 10px;
+}
+
+.card-text {
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.card-text > h4,p {
+    margin : 0;
+}
+
+.card-icons {
+    padding-top: 20px;
+}
+
+.edit-project-btn, .del-project-btn {
+    width: 20px;
+    height: 20px;
+}
+
 

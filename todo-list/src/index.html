@@ -17,19 +17,19 @@
             <img src="../image/plus-circle-outline.svg" alt="Add task" />
             <h1>Add task</h1>
           </div>
-          <div class="icon-text">
+          <div class="icon-text" id="today-task">
             <img src="../image/calendar-date-svgrepo-com (1).svg" alt="Today" />
             <h1>Today</h1>
           </div>
-          <div class="icon-text">
+          <div class="icon-text" id="upcoming-task">
             <img src="../image/calendar-month-outline.svg" alt="Upcoming" />
             <h1>Upcoming</h1>
           </div>
-          <div class="icon-text">
-            <img src="../image/calendar-check.svg" alt="Complete" />
-            <h1>Complete</h1>
+          <div class="icon-text" id="completed-task">
+            <img src="../image/calendar-check.svg" alt="Completed" />
+            <h1>Completed</h1>
           </div>
-          <div class="icon-text">
+          <div class="icon-text" id="overdued-task">
             <img
               src="../image/file-document-alert-outline.svg"
               alt="Overdued"
@@ -66,11 +66,12 @@
                 type="text"
                 id="project-name-input"
                 placeholder="E.x: Summer workout"
+                required
               />
 
             <div class="project-form-btn">
               <button type="submit" class="project-submit-btn">Create</button>
-              <button class="project-cancel-btn">Cancel</button>
+              <button type="button" class="project-cancel-btn">Cancel</button>
             </div>
           </form>
         </div>
@@ -80,9 +81,9 @@
           <h2>Create your new task</h2>
           <form class="add-task-form">
             <label for="task-name">Title:</label>
-            <input type="text" id="task-name" placeholder="E.g: Warm up" />
+            <input type="text" id="task-name" placeholder="E.g: Warm up" required/>
             <label for="task-descriptions">Descriptions:</label>
-            <input type="text" id="task-descriptions" />
+            <textarea name="Descriptions" id="task-descriptions"></textarea>
             <label for="task-due-date">Due date:</label>
             <input type="date" id="task-due-date" />
             <label for="task-project">Project:</label>
@@ -99,6 +100,8 @@
             </div>
           </form>
         </div>
+
+        <div class="todo-list"></div>
       </div>
     </div>
   </body>

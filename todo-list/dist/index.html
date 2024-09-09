@@ -17,19 +17,19 @@
             <img src="b254db15a65e85097053.svg" alt="Add task" />
             <h1>Add task</h1>
           </div>
-          <div class="icon-text">
+          <div class="icon-text" id="today-task">
             <img src="84da0e725012ffb5e9b5.svg" alt="Today" />
             <h1>Today</h1>
           </div>
-          <div class="icon-text">
+          <div class="icon-text" id="upcoming-task">
             <img src="18f552623324e58156e6.svg" alt="Upcoming" />
             <h1>Upcoming</h1>
           </div>
-          <div class="icon-text">
-            <img src="7627dfa4976d51ee938e.svg" alt="Complete" />
-            <h1>Complete</h1>
+          <div class="icon-text" id="completed-task">
+            <img src="7627dfa4976d51ee938e.svg" alt="Completed" />
+            <h1>Completed</h1>
           </div>
-          <div class="icon-text">
+          <div class="icon-text" id="overdued-task">
             <img
               src="82551d8ca1de7346bc95.svg"
               alt="Overdued"
@@ -52,7 +52,7 @@
             />
           </div>
         </div>
-        <div class="view-projects"></div>
+        <div class="projects-container"></div>
       </div>
       <div class="content">
         <h1>My Todo App</h1>
@@ -66,11 +66,12 @@
                 type="text"
                 id="project-name-input"
                 placeholder="E.x: Summer workout"
+                required
               />
 
             <div class="project-form-btn">
-              <button type="submit" class="project-submit-btn">Create</button>
-              <button class="project-cancel-btn">Cancel</button>
+              <button type="button" class="project-submit-btn">Create</button>
+              <button type="button" class="project-cancel-btn">Cancel</button>
             </div>
           </form>
         </div>
@@ -80,9 +81,9 @@
           <h2>Create your new task</h2>
           <form class="add-task-form">
             <label for="task-name">Title:</label>
-            <input type="text" id="task-name" placeholder="E.g: Warm up" />
+            <input type="text" id="task-name" placeholder="E.g: Warm up" required/>
             <label for="task-descriptions">Descriptions:</label>
-            <input type="text" id="task-descriptions" />
+            <textarea name="Descriptions" id="task-descriptions"></textarea>
             <label for="task-due-date">Due date:</label>
             <input type="date" id="task-due-date" />
             <label for="task-project">Project:</label>
@@ -94,11 +95,13 @@
               <option class="option-select " value="High" style="color: red" selected>High</option>
             </select>
             <div class="task-form-btn">
-              <button type="submit" class="task-submit-btn">Create</button>
+              <button type="button" class="task-submit-btn">Create</button>
               <button class="task-cancel-btn">Cancel</button>
             </div>
           </form>
         </div>
+
+        <div class="todo-list"></div>
       </div>
     </div>
   </body>

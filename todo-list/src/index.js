@@ -55,7 +55,7 @@ const submitFormBtn = document.querySelector(".project-submit-btn")
 const projectNameInput = document.querySelector("#project-name-input")
 submitFormBtn.addEventListener("click", () => {
   if (editingIdProject !== null) {
-    const projectToEdit = projects.find(p => p.id === editingIdProject);
+    const projectToEdit = projects.find((p) => p.id === editingIdProject)
     if (projectToEdit) {
       projectToEdit.name = projectNameInput.value
     }
@@ -64,7 +64,6 @@ submitFormBtn.addEventListener("click", () => {
     const project = new Project(projectNameInput.value)
     projects.push(project)
   }
-
 
   viewProjectSection()
   projectNameInput.value = ""
@@ -109,7 +108,7 @@ function hideProjectSection() {
 
 // task form
 const taskFormContainer = document.querySelector(".add-task-box")
-const taskForm = document.querySelector(".add-task-form")
+const taskSubmitForm = document.querySelector(".task-submit-btn")
 const addTaskBtn = document.querySelector("#add-task")
 const cancelTaskBtn = document.querySelector(".task-cancel-btn")
 
@@ -155,28 +154,50 @@ updateColorPriority()
 taskPriority.addEventListener("change", updateColorPriority)
 
 // submit task
-taskForm.addEventListener("submit", (event) => {
-  event.preventDefault()
-  const title = document.querySelector("#task-name").value
-  const descriptions = document.querySelector("#task-descriptions").value
-  const dueDate = document.querySelector("#task-due-date").value
-  const priority = document.querySelector("#task-priority").value
 
-  const task = new Todo(title, descriptions, dueDate, priority)
+let editingIdTask = null
+taskSubmitForm.addEventListener("click", () => {
+  const titleTask = document.querySelector("#task-name").value
+  const descriptionsTask = document.querySelector("#task-descriptions").value
+  const dueDateTask = document.querySelector("#task-due-date").value
+  const priorityTask = document.querySelector("#task-priority").value
 
-  projects.forEach((project) => {
-    project.addTodo(task)
-  })
+  if (editingIdTask !== null) {
+    projects.forEach((p) => {
+      const taskToEdit = p.todoList.find((t) => t.id === editingIdTask)
+      if (taskToEdit) {
+        taskToEdit.title = titleTask
+        taskToEdit.descriptions = descriptionsTask
+        taskToEdit.dueDate = dueDateTask
+        taskToEdit.priority = priorityTask
+      }
+    })
+  } else {
+    const task = new Todo(
+      titleTask,
+      descriptionsTask,
+      dueDateTask,
+      priorityTask
+    )
+
+    projects.forEach((project) => {
+      project.addTodo(task)
+    })
+  }
 
   closeTaskForm()
   displayTodoList()
 })
 
+function closeTodoList() {
+  taskList.innerHTML = ""
+}
+
 let taskList = document.querySelector(".todo-list")
 const displayTodoList = () => {
   taskList.innerHTML = ""
-  projects.forEach((project) => {
-    project.todoList.forEach((task) => {
+  projects.forEach((currentProject) => {
+    currentProject.todoList.forEach((task) => {
       let taskCard = document.createElement("div")
 
       taskCard.innerHTML = `<div class="card">
@@ -190,10 +211,25 @@ const displayTodoList = () => {
             <img src="../image/delete.svg" alt="Delete" class="del-task-btn">
           </div>
           </div>`
-
       taskList.append(taskCard)
 
-      const delTaskBtn = document.querySelectorAll(".del-task-btn")
+      const delTaskButtons = document.querySelectorAll(".del-task-btn")
+      delTaskButtons.forEach((currentDelButton, taskIndex) => {
+        currentDelButton.addEventListener("click", () => {
+          currentProject.todoList.splice(taskIndex, 1)
+          displayTodoList()
+        })
+      })
+
+      const editTaskButtons = document.querySelectorAll(".edit-task-btn")
+      editTaskButtons.forEach((currentEditBtn) => {
+        currentEditBtn.addEventListener("click", () => {
+          openTaskForm()
+          closeTodoList()
+          editingIdTask = task.id
+          console.log(editingIdTask)
+        })
+      })
     })
   })
 }

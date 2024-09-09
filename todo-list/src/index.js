@@ -128,10 +128,14 @@ addTaskBtn.addEventListener("click", () => {
     displayProjectsToSelect()
   }
 })
-
-cancelTaskBtn.addEventListener("click", () => {
-  closeTaskForm()
+cancelTaskBtn.addEventListener('click', () => {
+  if (!isProjectFormOpened && isTaskFormOpened) {
+    closeTaskForm()
+    viewProjectSection()
+    displayTodoList()
+  }
 })
+
 
 const projectTask = document.querySelector("#task-project")
 function displayProjectsToSelect() {
@@ -227,26 +231,33 @@ const displayTodoList = () => {
           openTaskForm()
           closeTodoList()
           editingIdTask = task.id
-          console.log(editingIdTask)
         })
       })
     })
   })
 }
 
-// let currentTime = new Date().getTime()
-// const todayTask = document.querySelector('#today-task');
-// todayTask.addEventListener('click', () => {
-//   projects.forEach(project => {
-//     project.todoList.forEach(task => {
-//       let givenTime = new Date(task.dueDate).getTime();
-//       if (givenTime > currentTime) {
-//         alert("upcoming")
-//       } else if (givenTime < currentTime) {
-//         alert("overdued")
-//       } else {
-//         alert("today")
-//       }
-//     })
-//   })
-// })
+let currentTime = new Date().getTime()
+const todayTask = document.querySelector("#today-task")
+const upcomingTask = document.querySelector("#upcoming-task")
+const overduedTask = document.querySelector("overdued-task")
+
+
+projects.forEach((currentProject) => {
+  currentProject.todoList.forEach((currentTask) => {
+    const givenTime = new Date(currentTask.dueDate).getTime()
+    if (givenTime < currentTime) {
+      overduedTask.addEventListener('click', () => {
+        alert('overdue')
+      })
+    } else if (givenTime > currentTime) {
+      upcomingTask.addEventListener('click', () => {
+        alert('upcoming')
+      })
+    } else {
+      todayTask.addEventListener("click", () => {
+        alert("Hi")
+      })
+    }
+  })
+})

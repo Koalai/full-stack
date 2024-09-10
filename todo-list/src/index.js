@@ -238,31 +238,54 @@ const displayTodoList = () => {
   })
 }
 
-let currentTime = new Date().getTime()
+let currentTime = Date.now()
+
 const displayTodayTask = () => {
   taskList.innerHTML = ""
   projects.forEach((currentProject) => {
-    const todayTask = currentProject.todoList.find(
-      (task) => task.dueDate.getTime() === currentTime
-    )
-    todayTask.forEach((t) => {
-      let taskCard = document.createElement("div")
-
-      taskCard.innerHTML = `<div class="card">
-          <div class="card-text">
-            <h4>${task.title}</h4>
-            <p>${task.dueDate}</p>
-            <p>${task.descriptions}</p>
-          </div>
-          <div class="card-icons">
-            <img src="../image/pencil.svg" alt="Edit" class="edit-task-btn">
-            <img src="../image/delete.svg" alt="Delete" class="del-task-btn">
-          </div>
-          </div>`
-      taskList.append(taskCard)
+    const todayTask = currentProject.todoList.filter(task => Date.parse(task.dueDate) === currentTime);
+    todayTask.forEach(t => {
+      console.log('today')
     })
   })
+ 
 }
 
+const displayUpcomingTask = () => {
+  taskList.innerHTML = ""
+  projects.forEach((currentProject) => {
+    const upcomingTask = currentProject.todoList.filter(task => Date.parse(task.dueDate) > currentTime);
+    upcomingTask.forEach((t) => {
+        console.log('upcoming')
+      })
+  })  
+}
+
+const displayOverduedTask = () => {
+  taskList.innerHTML = ""
+  projects.forEach((currentProject) => {
+    const overduedTask = currentProject.todoList.filter(task => Date.parse(task.dueDate) < currentTime)
+    overduedTask.forEach((t) => {
+        console.log('overdued')
+      })
+  })  
+}
+
+  
 const todayTaskToggle = document.querySelector("#today-task")
-todayTaskToggle.addEventListener("click", () => displayTodayTask())
+todayTaskToggle.addEventListener("click", () => {
+  displayTodayTask();
+  closeTodoList();
+})
+
+
+const upcomingTaskToggle = document.querySelector('#upcoming-task')
+upcomingTaskToggle.addEventListener('click', () => displayUpcomingTask())
+
+const overduedTaskToggle = document.querySelector('#overdued-task')
+overduedTaskToggle.addEventListener('click', () => displayOverduedTask())
+
+const todoListContainer = document.querySelector('#all-task')
+todoListContainer.addEventListener('click', () => {
+  displayTodoList();
+})

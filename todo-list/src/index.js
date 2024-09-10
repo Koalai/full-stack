@@ -190,7 +190,6 @@ taskSubmitForm.addEventListener("click", () => {
   }
 
   closeTaskForm()
-  clear()
   displayTodoList()
 })
 
@@ -198,10 +197,7 @@ function closeTodoList() {
   taskList.innerHTML = ""
 }
 
-const clearPage = document.querySelector('.tab-container')
-function clear() {
-  clearPage.innerHTML = ""
-}
+const clearPage = document.querySelector(".tab-container")
 
 const taskList = document.querySelector(".todo-list")
 const displayTodoList = () => {
@@ -242,14 +238,27 @@ const displayTodoList = () => {
     })
   })
 }
+// so sanh ngay thang nam
+// yyyy/mm/dd : task.dueDate => timestamp
+// yyyy/mm/dd : currentTime
+// new Date(): thoi gian đúng tới giây
 
-let currentTime = Date.now()
+function startOfDayTimeStamp(date) {
+  const startOfDay = new Date(date);
+  startOfDay.setHours(0, 0, 0, 0);
+  return startOfDay.getTime()
+}
+
+let currentTime = new Date()
+// const dueDateTimestamp = dueDate.toTimeStamp.startOFDate.toTimeStamp
+// const currentTime = timeStampt.startOFDate.timeStampt
+// dueDate = currentDate => startDate
 const todayTaskList = document.querySelector(".today-task-list")
 const displayTodayTask = () => {
   todayTaskList.innerHTML = ""
   projects.forEach((currentProject) => {
     const todayTask = currentProject.todoList.filter(
-      (task) => Date.parse(task.dueDate) === currentTime
+      (task) => startOfDayTimeStamp(task.dueDate) === startOfDayTimeStamp(currentTime)
     )
     todayTask.forEach((t) => {
       let taskCard = document.createElement("div")
@@ -266,6 +275,22 @@ const displayTodayTask = () => {
           </div>
           </div>`
       todayTaskList.append(taskCard)
+      const delTaskButtons = document.querySelectorAll(".del-task-btn")
+      delTaskButtons.forEach((currentDelButton, taskIndex) => {
+        currentDelButton.addEventListener("click", () => {
+          currentProject.todoList.splice(taskIndex, 1)
+          displayTodayTask()
+        })
+      })
+
+      const editTaskButtons = document.querySelectorAll(".edit-task-btn")
+      editTaskButtons.forEach((currentEditBtn) => {
+        currentEditBtn.addEventListener("click", () => {
+          openTaskForm()
+          close(todayTaskList)
+          editingIdTask = task.id
+        })
+      })
     })
   })
 }
@@ -274,7 +299,7 @@ const displayUpcomingTask = () => {
   upcomingTaskList.innerHTML = ""
   projects.forEach((currentProject) => {
     const upcomingTask = currentProject.todoList.filter(
-      (task) => Date.parse(task.dueDate) > currentTime
+      (task) => startOfDayTimeStamp(task.dueDate) > startOfDayTimeStamp(currentTime)
     )
     upcomingTask.forEach((t) => {
       let taskCard = document.createElement("div")
@@ -291,6 +316,22 @@ const displayUpcomingTask = () => {
           </div>
           </div>`
       upcomingTaskList.append(taskCard)
+      const delTaskButtons = document.querySelectorAll(".del-task-btn")
+      delTaskButtons.forEach((currentDelButton, taskIndex) => {
+        currentDelButton.addEventListener("click", () => {
+          currentProject.todoList.splice(taskIndex, 1)
+          displayUpcomingTask()
+        })
+      })
+
+      const editTaskButtons = document.querySelectorAll(".edit-task-btn")
+      editTaskButtons.forEach((currentEditBtn) => {
+        currentEditBtn.addEventListener("click", () => {
+          openTaskForm()
+          close(upcomingTaskList)
+          editingIdTask = task.id
+        })
+      })
     })
   })
 }
@@ -299,7 +340,7 @@ const displayOverduedTask = () => {
   overduedTaskList.innerHTML = ""
   projects.forEach((currentProject) => {
     const overduedTask = currentProject.todoList.filter(
-      (task) => Date.parse(task.dueDate) < currentTime
+      (task) => startOfDayTimeStamp(task.dueDate) < startOfDayTimeStamp(currentTime)
     )
     overduedTask.forEach((t) => {
       let taskCard = document.createElement("div")
@@ -316,34 +357,58 @@ const displayOverduedTask = () => {
           </div>
           </div>`
       overduedTaskList.append(taskCard)
+      const delTaskButtons = document.querySelectorAll(".del-task-btn")
+      delTaskButtons.forEach((currentDelButton, taskIndex) => {
+        currentDelButton.addEventListener("click", () => {
+          currentProject.todoList.splice(taskIndex, 1)
+          displayOverduedTask()
+        })
+      })
+
+      const editTaskButtons = document.querySelectorAll(".edit-task-btn")
+      editTaskButtons.forEach((currentEditBtn) => {
+        currentEditBtn.addEventListener("click", () => {
+          openTaskForm()
+          close(overduedTaskList)
+          editingIdTask = task.id
+        })
+      })
     })
   })
+}
+
+function close(task) {
+  task.innerHTML = ""
 }
 
 const todayTaskToggle = document.querySelector("#today-task")
 todayTaskToggle.addEventListener("click", () => {
   displayTodayTask()
   closeTodoList()
+  close(upcomingTaskList)
+  close(overduedTaskList)
 })
 
 const upcomingTaskToggle = document.querySelector("#upcoming-task")
 upcomingTaskToggle.addEventListener("click", () => {
   closeTodoList()
-  clear()
   displayUpcomingTask()
+  close(todayTaskList)
+  close(overduedTaskList)
 })
 
 const overduedTaskToggle = document.querySelector("#overdued-task")
 overduedTaskToggle.addEventListener("click", () => {
   closeTodoList()
-  clear()
   displayOverduedTask()
+  close(upcomingTaskList)
+  close(todayTaskList)
 })
 
 const todoListContainer = document.querySelector("#all-task")
 todoListContainer.addEventListener("click", () => {
-  clear()
   displayTodoList()
+  close(upcomingTaskList)
+  close(todayTaskList)
+  close(overduedTaskList)
 })
-
-

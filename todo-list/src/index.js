@@ -226,7 +226,7 @@ const completedTaskContainer = document.querySelector(".completed-task-list")
 const displayTodoList = () => {
   taskContainer.innerHTML = ""
   completedtaskContainer.innerHTML = ""
-  
+
   projects.forEach((currentProject) => {
     currentProject.todoList.forEach((task) => {
       let taskCard = document.createElement("div")
@@ -269,11 +269,12 @@ const displayTodoList = () => {
         })
       })
 
-      const checkboxs = taskCard.querySelector(".project-check")
-
-      checkboxs.addEventListener("change", (event) => {
-        const isChecked = event.target.checked
-        isTaskCompleted(task.id, isChecked)
+      const checkboxs = document.querySelectorAll(".project-check")
+      checkboxs.forEach((checkbox) => {
+        checkbox.addEventListener("change", (event) => {
+          const isChecked = event.target.checked
+          isTaskCompleted(task.id, isChecked)
+        })
       })
     })
   })

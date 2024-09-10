@@ -146,7 +146,7 @@ select {
     height: 32px;
 }
 
-.todo-list {
+.todo-list, .today-task-list, .upcoming-task-list, .overdued-task-list {
     display: flex;
     flex-wrap: nowrap;
 }

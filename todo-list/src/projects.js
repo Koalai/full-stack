@@ -11,6 +11,6 @@ export class Project {
   }
 }
 
-export let projects = [];
+export let projects = []
 
 

@@ -2,7 +2,6 @@ import { projects } from "./projects"
 import { showEditProjectForm } from "./displayForm"
 import editIconPath from "../image/pencil.svg"
 import deleteIconPath from "../image/delete.svg"
-import addIconPath from "../image/plus.svg"
 
 export const displayProject = () => {
   const projectMenuContainer = document.querySelector(".projects-container")
@@ -14,7 +13,6 @@ export const displayProject = () => {
       <div class="edit-del-btn">
        <img src="${editIconPath}" alt="Edit" class="edit-project-btn">
        <img src="${deleteIconPath}" alt="Delete" class="del-project-btn">
-       <img src="${addIconPath}" alt="Add" class="add-task-btn">
       </div>
     </div>`
   })
@@ -39,7 +37,7 @@ export const displayProject = () => {
   const addButtons = document.querySelectorAll(".add-task-btn")
   addButtons.forEach((addButton) => {
     addButton.addEventListener('click', () => {
-      
+
     })
   })
 }

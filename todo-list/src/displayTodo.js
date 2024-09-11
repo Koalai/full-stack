@@ -1,4 +1,7 @@
 import { showTaskForm } from "./displayForm"
+import { displayProject } from "./displayProject"
+import { projects } from "./projects"
+
 
 
 export const clear = () => {
@@ -55,7 +58,7 @@ export const displayUpcoming = () => {
 
 export const displayTodo = (projects) => {
     clear()
-  
+
     projects.forEach((currentProject) => {
       currentProject.todoList.forEach((task) => {
         // 4 task - task 2 index 1

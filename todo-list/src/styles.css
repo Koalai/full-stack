@@ -147,10 +147,6 @@ select {
     height: 32px;
 }
 
-.todo-list, .today-task-list, .upcoming-task-list, .overdued-task-list {
-    display: flex;
-    flex-wrap: nowrap;
-}
 
 .card {
     margin-left: 20px;

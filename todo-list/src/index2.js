@@ -1,8 +1,8 @@
-import { showCreateProjectForm } from "./displayForm"
+import { showCreateProjectForm, showCreateTaskForm } from "./displayForm"
 import './styles.css'
 
 const addProjectBtn = document.querySelector('#add-project-btn')
-
 addProjectBtn.addEventListener('click', showCreateProjectForm)
 
-const addTaskBtn = document.querySelector('')
+const addTaskBtn = document.querySelector('#add-task')
+addTaskBtn.addEventListener('click', showCreateTaskForm)

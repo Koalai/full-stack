@@ -1,6 +1,9 @@
 import { clear } from "./displayTodo"
 import { displayProject } from "./displayProject"
-import { projects, Project } from "./projects"
+import { Project, projects} from "./projects"
+
+import { Todo } from "./todo"
+import { displayTodo } from "./displayTodo"
 
 export const showCreateProjectForm = (id) => {
   showProjectForm({ id: "", name: "" })
@@ -61,7 +64,7 @@ export const showProjectForm = (project) => {
 }
 
 export const showCreateTaskForm = (id) => {
-  showTaskForm({ id: "" })
+  showTaskForm()
 }
 
 export const showEditTaskForm = (taskId) => {
@@ -103,6 +106,9 @@ export const showTaskForm = (task) => {
   const page = document.querySelector("#page")
   page.innerHTML = html
 
+  page.querySelector("#task-due-date").value = task.dueDate
+  page.querySelector("#task-priority").value = task.priority
+
   const cancelBtn = page.querySelector(".task-cancel-btn")
   cancelBtn.addEventListener("click", clear)
 
@@ -112,9 +118,11 @@ export const showTaskForm = (task) => {
   })
 
   const taskPriority = page.querySelector("#task-priority")
+  taskPriority.addEventListener('change', () => {
   const priorityOptions = taskPriority.options[taskPriority.selectedIndex]
   const priorityColor = priorityOptions.style.color
   taskPriority.style.color = priorityColor
+  })
 
   const submitBtn = page.querySelector(".task-submit-btn")
   submitBtn.addEventListener("click", () => {
@@ -127,21 +135,27 @@ export const showTaskForm = (task) => {
     )
 
     if (task.id) {
-      projects.forEach(p => {
-        
+      projects.forEach((p) => {
+        const taskIndex = p.todoList.findIndex((t) => t.id === task.id)
+        task[taskIndex].tilte = page.querySelector("#task-name").value
+        task[taskIndex].descriptions = page.querySelector("#task-descriptions").value
+        task[taskIndex].dueDate = page.querySelector("#task-due-date").value
+        task[taskIndex].priority = page.querySelector("#task-priority").value
       })
+    } else {
+      const task = new Todo(
+        titleTask,
+        descriptionsTask,
+        dueDateTask,
+        priorityTask
+      )
+      
+      const selectedProject = projects.find((p) => p.id === selectedProjectId)
+      if (selectedProject) {
+        selectedProject.addTodo(task)
+      }
     }
-    const task = new Todo(
-      titleTask,
-      descriptionsTask,
-      dueDateTask,
-      priorityTask
-    )
 
-    const selectedProject = projects.find((p) => p.id === selectedProjectId)
-    if (selectedProject) {
-      selectedProject.addTodo(task)
-    }
 
     clear()
     displayTodo()

@@ -3,31 +3,80 @@ import { Project, projects } from "./projects.js"
 import { Todo } from "./todo.js"
 import toggleDown from "../image/chevron-down.svg"
 import toggleRight from "../image/chevron-right.svg"
+import editIconPath from '../image/pencil.svg'
+import deleteIconPath from '../image/delete.svg'
+
+// menu
+const viewProjectMenuBtn = document.querySelector("#view-project-btn")
+const projectMenuContainer = document.querySelector(".projects-container")
+const addTaskMenuBtn = document.querySelector("#add-task")
+
+const completedTaskMenu = document.querySelector("#completed-task")
+completedTaskMenu.addEventListener("click", () => {
+  displayTodoList()
+})
+
+const todayTaskToggle = document.querySelector("#today-task")
+todayTaskToggle.addEventListener("click", () => {
+  displayTodayTask()
+  closeTodoList()
+  close(upcomingtaskContainer)
+  close(overduedtaskContainer)
+})
+
+const upcomingTaskToggle = document.querySelector("#upcoming-task")
+const overduedTaskToggle = document.querySelector("#overdued-task")
 
 // project form
-// change the view button to view or hide projects
+const openProjectFormBtn = document.querySelector("#add-project-btn")
 
-const viewProjectBtn = document.querySelector("#view-project-btn")
+const projectFormContainer = document.querySelector(".add-project-box")
+const taskFormContainer = document.querySelector(".add-task-box")
+const taskContainer = document.querySelector(".todo-list")
+
+// task form
+const cancelFormBtn = document.querySelector(".project-cancel-btn")
+const taskSubmitForm = document.querySelector(".task-submit-btn")
+const cancelTaskBtn = document.querySelector(".task-cancel-btn")
+const projectTask = document.querySelector("#task-project")
+const taskPriority = document.querySelector("#task-priority")
+const submitFormBtn = document.querySelector(".project-submit-btn")
+const projectNameInput = document.querySelector("#project-name-input")
+// project section
+// project container
+// task List
+const todoListContainer = document.querySelector("#all-task")
+// completed task list
+const completedTaskContainer = document.querySelector(".completed-task-list")
+// today task list
+const todaytaskContainer = document.querySelector(".today-task-list")
+// upcoming task list
+const upcomingtaskContainer = document.querySelector(".upcoming-task-list")
+// overdued task List
+const overduedtaskContainer = document.querySelector(".overdued-task-list")
+
 let toggleopenProjectForm = true
 let isProjectFormOpened = false
 let isTaskFormOpened = false
+let editingIdProject = null
+let editingIdTask = null
+let currentTime = new Date()
 
-viewProjectBtn.addEventListener("click", () => {
+// submit task
+
+viewProjectMenuBtn.addEventListener("click", () => {
   if (!isProjectFormOpened && !isTaskFormOpened) {
     if (toggleopenProjectForm) {
       hideProjectSection()
       toggleopenProjectForm = false
-      viewProjectBtn.src = toggleRight
+      viewProjectMenuBtn.src = toggleRight
     } else {
       viewProjectSection()
       toggleopenProjectForm = true
-      viewProjectBtn.src = toggleDown
+      viewProjectMenuBtn.src = toggleDown
     }
   }
 })
-
-const openProjectFormBtn = document.querySelector("#add-project-btn")
-const projectFormContainer = document.querySelector(".add-project-box")
 
 function closeProjectForm() {
   projectFormContainer.style.display = "none"
@@ -45,18 +94,14 @@ openProjectFormBtn.addEventListener("click", () => {
   }
 })
 
-const cancelFormBtn = document.querySelector(".project-cancel-btn")
 cancelFormBtn.addEventListener("click", () => {
   closeProjectForm()
 })
-let editingIdProject = null
 
 function checkProjectName(name) {
   return projects.some((project) => project.name === name)
 }
 
-const submitFormBtn = document.querySelector(".project-submit-btn")
-const projectNameInput = document.querySelector("#project-name-input")
 submitFormBtn.addEventListener("click", () => {
   const isTheProjectExisted = checkProjectName(projectNameInput.value)
   if (isTheProjectExisted && editingIdProject === null) {
@@ -80,15 +125,14 @@ submitFormBtn.addEventListener("click", () => {
   closeProjectForm()
 })
 
-const projectContainer = document.querySelector(".projects-container") // project container
 function viewProjectSection() {
-  projectContainer.innerHTML = ""
+  projectMenuContainer.innerHTML = ""
   projects.forEach((currentProject, projectIndex) => {
-    projectContainer.innerHTML += `<div class="project">
+    projectMenuContainer.innerHTML += `<div class="project">
       <p>${currentProject.name}</p>
       <div class="edit-del-btn">
-       <img src="../image/pencil.svg" alt="Edit" class="edit-project-btn">
-       <img src="../image/delete.svg" alt="Delete" class="del-project-btn">
+       <img src="${editIconPath}" alt="Edit" class="edit-project-btn">
+       <img src="${deleteIconPath}" alt="Delete" class="del-project-btn">
       </div>
     </div>`
 
@@ -113,14 +157,8 @@ function viewProjectSection() {
 }
 
 function hideProjectSection() {
-  projectContainer.innerHTML = ""
+  projectMenuContainer.innerHTML = ""
 }
-
-// task form
-const taskFormContainer = document.querySelector(".add-task-box")
-const taskSubmitForm = document.querySelector(".task-submit-btn")
-const addTaskBtn = document.querySelector("#add-task")
-const cancelTaskBtn = document.querySelector(".task-cancel-btn")
 
 function openTaskForm() {
   taskFormContainer.style.display = "block"
@@ -132,7 +170,7 @@ function closeTaskForm() {
   isTaskFormOpened = false
 }
 
-addTaskBtn.addEventListener("click", () => {
+addTaskMenuBtn.addEventListener("click", () => {
   if (!isProjectFormOpened && !isTaskFormOpened) {
     openTaskForm()
     displayProjectsToSelect()
@@ -150,15 +188,11 @@ cancelTaskBtn.addEventListener("click", () => {
   }
 })
 
-const projectTask = document.querySelector("#task-project")
 function displayProjectsToSelect() {
   projects.forEach((project, projectIndex) => {
     projectTask.innerHTML += `<option value="${projectIndex}">${project.name}</option>`
   })
 }
-
-// priority color
-const taskPriority = document.querySelector("#task-priority")
 
 function updateColorPriority() {
   let priorityOptions = taskPriority.options[taskPriority.selectedIndex]
@@ -171,8 +205,6 @@ updateColorPriority()
 taskPriority.addEventListener("change", updateColorPriority)
 
 // submit task
-
-let editingIdTask = null
 
 taskSubmitForm.addEventListener("click", () => {
   const titleTask = document.querySelector("#task-name").value
@@ -202,7 +234,6 @@ taskSubmitForm.addEventListener("click", () => {
       project.addTodo(task)
     })
   }
-
   closeTaskForm()
   displayTodoList()
 })
@@ -221,69 +252,66 @@ function isTaskCompleted(taskId, isChecked) {
   })
 }
 
-const taskContainer = document.querySelector(".todo-list")
-const completedTaskContainer = document.querySelector(".completed-task-list")
 const displayTodoList = () => {
   taskContainer.innerHTML = ""
-  completedtaskContainer.innerHTML = ""
+  completedTaskContainer.innerHTML = ""
 
   projects.forEach((currentProject) => {
     currentProject.todoList.forEach((task) => {
-      let taskCard = document.createElement("div")
+      // 4 task - task 2 index 1
+      const taskCard = document.createElement("div")
+      taskCard.classList.add("card")
 
-      taskCard.innerHTML = `<div class="card">
-          <div class="card-check">
-            <input type="checkbox" class="project-check">
-          </div>
-          <div class="card-text">
+      const checkboxWrapper = document.createElement("div")
+      checkboxWrapper.classList.add("card-check")
+      const checkbox = document.createElement("input")
+      checkbox.type="checkbox"
+      checkbox.classList.add("project-check")
+      checkbox.addEventListener("change", (event) => {
+        const isChecked = event.target.checked
+        isTaskCompleted(task.id, isChecked)
+      })
+      checkboxWrapper.append(checkbox)
+
+      const infoWrapper = document.createElement("div")
+      infoWrapper.classList.add("card-text")
+      infoWrapper.innerHTML = `
             <h4>${task.title}</h4>
             <p>${task.dueDate}</p>
             <p>${task.descriptions}</p>
-          </div>
-          <div class="card-icons">
-            <img src="../image/pencil.svg" alt="Edit" class="edit-task-btn">
-            <img src="../image/delete.svg" alt="Delete" class="del-task-btn">
-          </div>
-          </div>`
+      `
+
+      const btnWrapper = document.createElement("div")
+      btnWrapper.classList.add("card-icons")
+
+      const delTaskIcon = document.createElement("img")
+      delTaskIcon.src = deleteIconPath
+      
+      delTaskIcon.addEventListener("click", () => {
+        const foundedIndex = currentProject.todoList.findIndex((curTask) => curTask.id === task.id)
+        currentProject.todoList.splice(foundedIndex, 1)
+        displayTodoList()
+      })
+
+      const editTaskIcon = document.createElement("img")
+      editTaskIcon.src = editIconPath
+      editTaskIcon.addEventListener("click", () => {
+          openTaskForm()
+          closeTodoList()
+          editingIdTask = task.id
+      })
+      btnWrapper.append(delTaskIcon, editTaskIcon)
+      // 4 cai card
+      taskCard.append(checkboxWrapper, infoWrapper, btnWrapper)
 
       if (task.completed) {
         completedTaskContainer.append(taskCard)
       } else {
         taskContainer.append(taskCard)
       }
-
-      const delTaskButtons = document.querySelectorAll(".del-task-btn")
-      delTaskButtons.forEach((currentDelButton, taskIndex) => {
-        currentDelButton.addEventListener("click", () => {
-          currentProject.todoList.splice(taskIndex, 1)
-          displayTodoList()
-        })
-      })
-
-      const editTaskButtons = document.querySelectorAll(".edit-task-btn")
-      editTaskButtons.forEach((currentEditBtn) => {
-        currentEditBtn.addEventListener("click", () => {
-          openTaskForm()
-          closeTodoList()
-          editingIdTask = task.id
-        })
-      })
-
-      const checkboxs = document.querySelectorAll(".project-check")
-      checkboxs.forEach((checkbox) => {
-        checkbox.addEventListener("change", (event) => {
-          const isChecked = event.target.checked
-          isTaskCompleted(task.id, isChecked)
-        })
-      })
     })
   })
 }
-
-const completedTaskToggle = document.querySelector("#completed-task")
-completedTaskToggle.addEventListener("click", () => {
-  displayTodoList()
-})
 
 // so sanh ngay thang nam
 // yyyy/mm/dd : task.dueDate => timestamp
@@ -296,11 +324,9 @@ function startOfDayTimeStamp(date) {
   return startOfDay.getTime()
 }
 
-let currentTime = new Date()
 // const dueDateTimestamp = dueDate.toTimeStamp.startOFDate.toTimeStamp
 // const currentTime = timeStampt.startOFDate.timeStampt
 // dueDate = currentDate => startDate
-const todaytaskContainer = document.querySelector(".today-task-list")
 const displayTodayTask = () => {
   todaytaskContainer.innerHTML = ""
   projects.forEach((currentProject) => {
@@ -318,8 +344,8 @@ const displayTodayTask = () => {
             <p>${t.descriptions}</p>
           </div>
           <div class="card-icons">
-            <img src="../image/pencil.svg" alt="Edit" class="edit-task-btn">
-            <img src="../image/delete.svg" alt="Delete" class="del-task-btn">
+            <img src="${editIconPath}" alt="Edit" class="edit-task-btn">
+            <img src="${deleteIconPath}" alt="Delete" class="del-task-btn">
           </div>
           </div>`
       todaytaskContainer.append(taskCard)
@@ -342,7 +368,6 @@ const displayTodayTask = () => {
     })
   })
 }
-const upcomingtaskContainer = document.querySelector(".upcoming-task-list")
 const displayUpcomingTask = () => {
   upcomingtaskContainer.innerHTML = ""
   projects.forEach((currentProject) => {
@@ -360,8 +385,8 @@ const displayUpcomingTask = () => {
             <p>${t.descriptions}</p>
           </div>
           <div class="card-icons">
-            <img src="../image/pencil.svg" alt="Edit" class="edit-task-btn">
-            <img src="../image/delete.svg" alt="Delete" class="del-task-btn">
+            <img src="${editIconPath}" alt="Edit" class="edit-task-btn">
+            <img src="${deleteIconPath}" alt="Delete" class="del-task-btn">
           </div>
           </div>`
       upcomingtaskContainer.append(taskCard)
@@ -384,7 +409,6 @@ const displayUpcomingTask = () => {
     })
   })
 }
-const overduedtaskContainer = document.querySelector(".overdued-task-list")
 const displayOverduedTask = () => {
   overduedtaskContainer.innerHTML = ""
   projects.forEach((currentProject) => {
@@ -414,6 +438,7 @@ const displayOverduedTask = () => {
           displayOverduedTask()
         })
       })
+      // npx webpack serve
 
       const editTaskButtons = document.querySelectorAll(".edit-task-btn")
       editTaskButtons.forEach((currentEditBtn) => {
@@ -431,15 +456,6 @@ function close(task) {
   task.innerHTML = ""
 }
 
-const todayTaskToggle = document.querySelector("#today-task")
-todayTaskToggle.addEventListener("click", () => {
-  displayTodayTask()
-  closeTodoList()
-  close(upcomingtaskContainer)
-  close(overduedtaskContainer)
-})
-
-const upcomingTaskToggle = document.querySelector("#upcoming-task")
 upcomingTaskToggle.addEventListener("click", () => {
   closeTodoList()
   displayUpcomingTask()
@@ -447,7 +463,6 @@ upcomingTaskToggle.addEventListener("click", () => {
   close(overduedtaskContainer)
 })
 
-const overduedTaskToggle = document.querySelector("#overdued-task")
 overduedTaskToggle.addEventListener("click", () => {
   closeTodoList()
   displayOverduedTask()
@@ -455,10 +470,10 @@ overduedTaskToggle.addEventListener("click", () => {
   close(todaytaskContainer)
 })
 
-const todoListContainer = document.querySelector("#all-task")
 todoListContainer.addEventListener("click", () => {
   displayTodoList()
   close(upcomingtaskContainer)
   close(todaytaskContainer)
   close(overduedtaskContainer)
 })
+

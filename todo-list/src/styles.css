@@ -182,7 +182,7 @@ select {
     padding-top: 20px;
 }
 
-.edit-project-btn, .del-project-btn {
+.edit-project-btn, .del-project-btn, .add-task-btn {
     width: 20px;
     height: 20px;
 }

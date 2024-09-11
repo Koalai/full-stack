@@ -1,6 +1,6 @@
 import { clear } from "./displayTodo"
 import { displayProject } from "./displayProject"
-import { Project, projects} from "./projects"
+import { Project, projects } from "./projects"
 
 import { Todo } from "./todo"
 import { displayTodo } from "./displayTodo"
@@ -64,14 +64,13 @@ export const showProjectForm = (project) => {
 }
 
 export const showCreateTaskForm = (id) => {
-  showTaskForm()
+  showTaskForm({id: ""})
 }
 
 export const showEditTaskForm = (taskId) => {
   showTaskForm(
-    projects.map((curProject) => {
-      const tskEdit = curProject.todoList.find((tsk) => tsk.id === taskId)
-      return tskEdit
+    projects.flatMap((curProject) => {
+      curProject.todoList.find((tsk) => tsk.id === taskId)
     })
   )
 }
@@ -106,8 +105,15 @@ export const showTaskForm = (task) => {
   const page = document.querySelector("#page")
   page.innerHTML = html
 
-  page.querySelector("#task-due-date").value = task.dueDate
-  page.querySelector("#task-priority").value = task.priority
+  if (task) {
+    page.querySelector("#task-name").value = task.title
+    page.querySelector("#task-descriptions").value = task.descriptions
+    page.querySelector("#task-due-date").value = task.dueDate
+    page.querySelector("#task-priority").value = task.priority
+    page.querySelector(
+      "#task-project-input option[value='${task.id}']"
+    ).checked = true
+  }
 
   const cancelBtn = page.querySelector(".task-cancel-btn")
   cancelBtn.addEventListener("click", clear)
@@ -118,10 +124,10 @@ export const showTaskForm = (task) => {
   })
 
   const taskPriority = page.querySelector("#task-priority")
-  taskPriority.addEventListener('change', () => {
-  const priorityOptions = taskPriority.options[taskPriority.selectedIndex]
-  const priorityColor = priorityOptions.style.color
-  taskPriority.style.color = priorityColor
+  taskPriority.addEventListener("change", () => {
+    const priorityOptions = taskPriority.options[taskPriority.selectedIndex]
+    const priorityColor = priorityOptions.style.color
+    taskPriority.style.color = priorityColor
   })
 
   const submitBtn = page.querySelector(".task-submit-btn")
@@ -134,28 +140,30 @@ export const showTaskForm = (task) => {
       page.querySelector("#task-project-input").value
     )
 
-    if (task.id) {
+    if (task) {
       projects.forEach((p) => {
         const taskIndex = p.todoList.findIndex((t) => t.id === task.id)
-        task[taskIndex].tilte = page.querySelector("#task-name").value
-        task[taskIndex].descriptions = page.querySelector("#task-descriptions").value
-        task[taskIndex].dueDate = page.querySelector("#task-due-date").value
-        task[taskIndex].priority = page.querySelector("#task-priority").value
+        p.todoList[taskIndex].title = page.querySelector("#task-name").value
+        p.todoList[taskIndex].descriptions =
+          page.querySelector("#task-descriptions").value
+        p.todoList[taskIndex].dueDate =
+          page.querySelector("#task-due-date").value
+        p.todoList[taskIndex].priority =
+          page.querySelector("#task-priority").value
       })
     } else {
-      const task = new Todo(
+      const newTask = new Todo(
         titleTask,
         descriptionsTask,
         dueDateTask,
         priorityTask
       )
-      
+
       const selectedProject = projects.find((p) => p.id === selectedProjectId)
       if (selectedProject) {
-        selectedProject.addTodo(task)
+        selectedProject.addTodo(newTask)
       }
     }
-
 
     clear()
     displayTodo()

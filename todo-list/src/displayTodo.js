@@ -1,12 +1,22 @@
 import { showTaskForm } from "./displayForm"
 import { displayProject } from "./displayProject"
 import { projects } from "./projects"
+import editIconPath from '../image/pencil.svg'
+import deleteIconPath from '../image/delete.svg'
 
 
 
 export const clear = () => {
     const page = document.querySelector('#page')
     page.innerHTML = ''
+}
+
+const currentTime = new Date()
+
+const startOfDayTimeStamp = date => {
+    const startOfDay = new Date(date)
+  startOfDay.setHours(0, 0, 0, 0)
+  return startOfDay.getTime()
 }
 
 export const displayToday = () => {
@@ -51,14 +61,14 @@ export const displayUpcoming = () => {
           )
         return {
             ...curProject,
-            todoList: todayTask
+            todoList: todayTask,
         }
     }))
 }
 
-export const displayTodo = (projects) => {
+export const displayTodo = (projectsInput) => {
     clear()
-
+    const page = document.querySelector('#page')
     projects.forEach((currentProject) => {
       currentProject.todoList.forEach((task) => {
         // 4 task - task 2 index 1
@@ -71,8 +81,16 @@ export const displayTodo = (projects) => {
         checkbox.type="checkbox"
         checkbox.classList.add("project-check")
         checkbox.addEventListener("change", (event) => {
-          const isChecked = event.target.checked
-          isTaskCompleted(task.id, isChecked)
+            const isChecked = event.target.checked
+
+            projectsInput.forEach(p => {
+                const selectedTask = p.todoList.find(t => t.id === task.id)
+                if (selectedTask) {
+                    selectedTask.completed = isChecked
+                }
+            })
+
+            
         })
         checkboxWrapper.append(checkbox)
   
@@ -93,7 +111,7 @@ export const displayTodo = (projects) => {
         delTaskIcon.addEventListener("click", () => {
           const foundedIndex = currentProject.todoList.findIndex((curTask) => curTask.id === task.id)
           currentProject.todoList.splice(foundedIndex, 1)
-          displayTodo()
+          displayTodo(projects)
         })
   
         const editTaskIcon = document.createElement("img")

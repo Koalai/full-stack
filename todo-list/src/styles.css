@@ -183,7 +183,7 @@ select {
     height: 20px;
 }
 
-.edit-task-btn, .del-task-btn {
+.card-icons img {
     width: 24px;
     height: 24px;   
 } 

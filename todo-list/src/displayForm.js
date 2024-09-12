@@ -71,7 +71,7 @@ export const showEditTaskForm = (taskId) => {
   showTaskForm(
     projects.flatMap((curProject) => {
       curProject.todoList.find((tsk) => tsk.id === taskId)
-    })
+    })[0]
   )
 }
 
@@ -93,7 +93,7 @@ export const showTaskForm = (task) => {
             <select id="task-priority">
               <option class="option-select" value="Low" style="color: lightblue">Low</option>
               <option class="option-select" value="Medium" style="color: lightsalmon">Medium</option>
-              <option class="option-select" value="High" style="color: red" selected>High</option>
+              <option class="option-select" value="High" style="color: red">High</option>
             </select>
             <div class="task-form-btn">
               <button type="button" class="task-submit-btn">Create</button>
@@ -105,18 +105,18 @@ export const showTaskForm = (task) => {
   const page = document.querySelector("#page")
   page.innerHTML = html
 
-  if (task) {
+  if (task.id) {
     page.querySelector("#task-name").value = task.title
     page.querySelector("#task-descriptions").value = task.descriptions
     page.querySelector("#task-due-date").value = task.dueDate
     page.querySelector("#task-priority").value = task.priority
-    page.querySelector(
-      "#task-project-input option[value='${task.id}']"
-    ).checked = true
   }
 
   const cancelBtn = page.querySelector(".task-cancel-btn")
-  cancelBtn.addEventListener("click", clear)
+  cancelBtn.addEventListener("click", () => {
+    clear();
+    displayTodo(projects);
+  })
 
   const selectProjectInput = page.querySelector("#task-project-input")
   projects.forEach((project) => {
@@ -136,11 +136,11 @@ export const showTaskForm = (task) => {
     const descriptionsTask = page.querySelector("#task-descriptions").value
     const dueDateTask = page.querySelector("#task-due-date").value
     const priorityTask = page.querySelector("#task-priority").value
-    const selectedProjectId = parseInt(
-      page.querySelector("#task-project-input").value
-    )
+    const selectedProjectId = page.querySelector("#task-project-input").value
+    
+    console.log(selectedProjectId);
 
-    if (task) {
+    if (task.id) {
       projects.forEach((p) => {
         const taskIndex = p.todoList.findIndex((t) => t.id === task.id)
         p.todoList[taskIndex].title = page.querySelector("#task-name").value
@@ -159,13 +159,14 @@ export const showTaskForm = (task) => {
         priorityTask
       )
 
+
       const selectedProject = projects.find((p) => p.id === selectedProjectId)
+      // console.log(selectedProject)
       if (selectedProject) {
         selectedProject.addTodo(newTask)
       }
     }
 
-    clear()
-    displayTodo()
+    displayTodo(projects)
   })
 }

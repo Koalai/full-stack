@@ -64,15 +64,18 @@ export const showProjectForm = (project) => {
 }
 
 export const showCreateTaskForm = (id) => {
-  showTaskForm({id: ""})
+  showTaskForm({ id: "" })
 }
 
 export const showEditTaskForm = (taskId) => {
-  showTaskForm(
-    projects.flatMap((curProject) => {
-      curProject.todoList.find((tsk) => tsk.id === taskId)
-    })[0]
-  )
+  console.log(taskId)
+  const updatedP = projects
+    .flatMap((curProject) => curProject.todoList)
+    .find((tsk) => tsk.id === taskId)
+
+  console.log(updatedP)
+
+  showTaskForm(updatedP)
 }
 
 export const showTaskForm = (task) => {
@@ -106,6 +109,7 @@ export const showTaskForm = (task) => {
   page.innerHTML = html
 
   if (task.id) {
+    console.log(task)
     page.querySelector("#task-name").value = task.title
     page.querySelector("#task-descriptions").value = task.descriptions
     page.querySelector("#task-due-date").value = task.dueDate
@@ -114,8 +118,8 @@ export const showTaskForm = (task) => {
 
   const cancelBtn = page.querySelector(".task-cancel-btn")
   cancelBtn.addEventListener("click", () => {
-    clear();
-    displayTodo(projects);
+    clear()
+    displayTodo(projects)
   })
 
   const selectProjectInput = page.querySelector("#task-project-input")
@@ -137,10 +141,9 @@ export const showTaskForm = (task) => {
     const dueDateTask = page.querySelector("#task-due-date").value
     const priorityTask = page.querySelector("#task-priority").value
     const selectedProjectId = page.querySelector("#task-project-input").value
-    
-    console.log(selectedProjectId);
 
     if (task.id) {
+      console.log(task)
       projects.forEach((p) => {
         const taskIndex = p.todoList.findIndex((t) => t.id === task.id)
         p.todoList[taskIndex].title = page.querySelector("#task-name").value
@@ -159,9 +162,7 @@ export const showTaskForm = (task) => {
         priorityTask
       )
 
-
       const selectedProject = projects.find((p) => p.id === selectedProjectId)
-      // console.log(selectedProject)
       if (selectedProject) {
         selectedProject.addTodo(newTask)
       }

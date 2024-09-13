@@ -8,7 +8,7 @@ class LinkedList {
     }
 
     prepend(value) {
-        const node = new Node(value)
+        let node = new Node(value)
         this.length += 1
         if (!this.head) {
             this.head = node
@@ -19,7 +19,7 @@ class LinkedList {
     }
 
     append(value) {
-        const node = new Node(value);
+        let node = new Node(value);
         this.length +=1
         if (!this.head) {
             this.head = node
@@ -50,7 +50,7 @@ class LinkedList {
         
     }
 
-    tail() {
+    getTail() {
         if (!this.head) {
             return null    
         } 
@@ -62,6 +62,36 @@ class LinkedList {
         return currentNode
     }
 
-    
+    at(index) {
+        if (!this.head) {
+            return null    
+        } 
+        let currentNode = this.head
+        for (let i = 0; i < index; i++){
+            currentNode = currentNode.nextNode
+        }
+
+        return currentNode
+    }
+
+    pop() {
+        if (!this.head) {
+            return null    
+        } 
+
+        if (!this.head.nextNode) {
+            return this.head = null
+        }
+
+        let currentNode = this.head
+        let prevCurrentNode = null
+
+        while (currentNode.nextNode) {
+            prevCurrentNode = currentNode
+            currentNode = currentNode.nextNode; 
+        }
+
+        prevCurrentNode.nextNode = null
+    }
 }
 

@@ -8,7 +8,7 @@ const errorMessage = document.querySelector(".error-message")
 const weatherContainer = document.querySelector(".weather")
 
 async function checkWeather(city) {
-  const response = await fetch(url + city + `&appid=${apiKey}`)
+  const response = await fetch(`${url}${city}&appid=${apiKey}`)
 
   if (response.status === 404) {
     errorMessage.style.display = "block"

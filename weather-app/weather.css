@@ -3,9 +3,20 @@
     padding: 0;
 }
 
+html {
+    height: 100vh;
+    background-image: url(./image/background.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 body{
     text-align: center;
-    background-color: grey;
+}
+.app-content h1 {
+    font-size: 52px;
+    color: rgb(232, 242, 209);
+    margin-top: 20px;
 }
 
 .card{

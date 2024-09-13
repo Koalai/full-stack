@@ -41,6 +41,27 @@ class LinkedList {
         }
     }
 
+    getHead() {
+        if (!this.head) {
+            return null
+        }
+        
+        return this.head
+        
+    }
+
+    tail() {
+        if (!this.head) {
+            return null    
+        } 
+        let currentNode = this.head
+        while (!currentNode.nextNode) {
+            currentNode = currentNode.nextNode
+        }
+
+        return currentNode
+    }
+
     
 }
 

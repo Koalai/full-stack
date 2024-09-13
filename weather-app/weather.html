@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="weather.css" />
+  </head>
+  <body>
+    <div class="app-content">
+      <h1>Weather App</h1>
+    </div>
+    <div class="card">
+      <div class="search">
+        <input type="text" required placeholder="Enter city" />
+        <button>
+          <img src="./image/magnify.svg" />
+        </button>
+      </div>
+      <div class="card-text">
+        <img src="" />
+        <h1></h1>
+        <h3></h3>
+        <div class="weather">
+          <img src="./image/rain.png" class="weather-icon" />
+          <div class="text-detail">
+            <h1 class="temp">22°C</h1>
+            <h2 class="city">Ho Chi Minh</h2>
+          </div>
+          <div class="weather-details">
+            <div class="column-detail">
+              <img src="./image/humidity.png" class="detail-icons"/>
+              <div class="text-details">
+                <p class="humidity">50%</p>
+                <p>Humidity</p>
+              </div>
+            </div>
+            <div class="column-detail">
+              <img src="./image/wind.png" class="detail-icons" />
+              <div class="text-details">
+                <p class="wind">10 km/h</p>
+                <p>Wind Speed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="weather.js"></script>
+  </body>
+</html>

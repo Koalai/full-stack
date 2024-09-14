@@ -41,4 +41,17 @@ function hashMap() {
         }   
     }
 
+    function remove(key) {
+        const index = hash(key);
+        const bucket = buckets[index]
+
+        for (let i = 0; i < bucket.length; i++){
+            if (bucket[i][0] === key) {
+                bucket.splice(i, 1)
+                return true
+            }
+        }   
+        return false
+    }
+
 }

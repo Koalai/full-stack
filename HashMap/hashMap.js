@@ -30,4 +30,15 @@ function hashMap() {
 
     }
 
+    function get(key) {
+        const index = hash(key);
+        const bucket = buckets[index]
+
+        for (let i = 0; i < bucket.length; i++){
+            if (bucket[i][0] === key) {
+                return bucket[i][1] = value
+            }
+        }   
+    }
+
 }

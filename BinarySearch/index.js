@@ -53,4 +53,16 @@ class Tree {
         console.log("Failed to insert, duplicated value founded !")
     }
   }
+    
+    deleteItem(value) {
+        let currentNode = this.root
+        if (currentNode === null) {
+            console.log("Failed to delete, there is no node in here!")
+            return;
+        }
+        
+        while (currentNode !== null) {
+            
+        }
+    }
 }

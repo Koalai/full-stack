@@ -25,5 +25,32 @@ class Tree {
     return newNode
   }
 
-  insert(value) {}
+  insert(value) {
+    let currentNode = this.root
+    let previousNode = null
+
+    if (currentNode === null) {
+      currentNode = new Node(value)
+      return
+    }
+
+    while (currentNode !== null) {
+      previousNode = currentNode
+      if (value > currentNode.data) {
+        currentNode = currentNode.right
+      } else if (value < currentNode.data) {
+        currentNode = currentNode.left
+      } else {
+          break;
+      }
+    }
+
+    if (value < previousNode.data) {
+      previousNode.left = new Node(value)
+    } else if (value > previousNode.data) {
+      previousNode.right = new Node(value)
+    } else {
+        console.log("Failed to insert, duplicated value founded !")
+    }
+  }
 }

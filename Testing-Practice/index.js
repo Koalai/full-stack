@@ -50,3 +50,23 @@ function ceasarCypher(str, shift) {
     }).join('');
 }
 console.log(ceasarCypher("Tui la zo dich", 4))
+
+
+function analyzeArray(arr) {
+    let obj = {}
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++){
+        sum += arr[i]
+        console.log(sum)
+    }
+    
+
+    return obj = {
+        average: sum / arr.length,
+        min: Math.min(...arr),
+        max: Math.max(...arr),
+        length : arr.length
+    }
+}
+
+console.log(analyzeArray([1,2,5,9,7,12]))

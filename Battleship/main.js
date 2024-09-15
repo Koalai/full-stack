@@ -70,32 +70,47 @@ const shipContainer = [ship1, ship2, ship3, ship4, ship5];
 
 function addShip(ship) {
   const allCell = document.querySelectorAll('#bot');
-  const randomCell = Math.floor(Math.random() * rowNum * colNum);
-  let isHorizontal = Math.random() < 0.5;
+  let placed = false;
 
-  let shipBlocks = [];
+  while (!placed) {
+    const randomCell = Math.floor(Math.random() * rowNum * colNum);
+    let isHorizontal = Math.random() < 0.5;
+    let shipBlocks = [];
 
-  let currentRow = Math.floor(randomCell / 10);
-
-  for (let i = 0; i < ship.length; i++) {
     if (isHorizontal) {
-      if (randomCell + ship.length > currentRow * 10 + 10) {
-        return;
-      } else {
-        shipBlocks.push(allCell[randomCell + i]);
+      // Ensure the ship fits in the row
+      if ((randomCell % colNum) + ship.length <= colNum) {
+        for (let i = 0; i < ship.length; i++) {
+          let block = allCell[randomCell + i];
+          if (block.classList.contains('occupied')) {
+            shipBlocks = [];
+            break; // If any block is occupied, stop the placement
+          }
+          shipBlocks.push(block);
+        }
       }
     } else {
-      if (randomCell + ship.length * colNum > colNum * rowNum) {
-        return;
-      } else {
-        shipBlocks.push(allCell[randomCell + i * rowNum]);
+      // Ensure the ship fits in the column
+      if (randomCell + ship.length * colNum < rowNum * colNum) {
+        for (let i = 0; i < ship.length; i++) {
+          let block = allCell[randomCell + i * colNum];
+          if (block.classList.contains('occupied')) {
+            shipBlocks = [];
+            break; // If any block is occupied, stop the placement
+          }
+          shipBlocks.push(block);
+        }
       }
     }
+
+    // If the ship was successfully placed, mark blocks as occupied
+    if (shipBlocks.length === ship.length) {
+      shipBlocks.forEach((shipBlock) => {
+        shipBlock.classList.add(ship.name, 'occupied');
+      });
+      placed = true; // Ship successfully placed
+    }
   }
-  shipBlocks.forEach((shipBlock) => {
-    console.log(shipBlock);
-    shipBlock.classList.add(ship.name);
-  });
 }
 
 addShip(ship5);

@@ -87,3 +87,13 @@
   justify-content: center;
   gap: 20px;
 }
+
+
+#bot .ship1,
+#bot .ship2,
+#bot .ship3,
+#bot .ship4,
+#bot .ship5 {
+  background-color: pink;
+  border: 1px solid black;
+}

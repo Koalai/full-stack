@@ -15,6 +15,7 @@
   width: 100%;
   height: 100%;
   border: 1px solid black;
+  box-sizing: border-box;
 }
 
 .ship-options-container {
@@ -95,5 +96,4 @@
 #bot .ship4,
 #bot .ship5 {
   background-color: pink;
-  border: 1px solid black;
 }

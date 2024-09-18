@@ -56,6 +56,7 @@ function Education({ educations, setEducations }) {
     },
   ]
 
+
   return (
     <div className="education-section">
       <div className="education-list">
@@ -73,3 +74,6 @@ function Education({ educations, setEducations }) {
     </div>
   )
 }
+
+
+export default Education

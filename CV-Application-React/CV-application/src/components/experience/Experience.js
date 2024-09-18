@@ -48,6 +48,7 @@ function Experience({ experiences, setExperiences }) {
     },
   ]
 
+
   return (
     <div className="experience-section">
       <div className="experience-list">
@@ -63,3 +64,5 @@ function Experience({ experiences, setExperiences }) {
     </div>
   )
 }
+
+export default Experience

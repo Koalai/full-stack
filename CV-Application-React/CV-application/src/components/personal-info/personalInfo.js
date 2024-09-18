@@ -53,3 +53,6 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
     </div>
   )
 }
+
+
+export default PersonalInfo

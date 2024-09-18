@@ -1,4 +1,4 @@
-function Personalinfo({personalInfo,setPersonalInfo}){
+function PersonalInfo({personalInfo,setPersonalInfo}){
     const fields= [
         {name: 'fullname', type:'text', label: 'Full Name', placeholder: 'Enter your full name', required: true},
         {name: 'email', type:'email', label: 'Email', placeholder: 'Enter your email address', required: true},
@@ -8,5 +8,4 @@ function Personalinfo({personalInfo,setPersonalInfo}){
         {name: 'linkedIn', type:'url', label: 'LinkedIn Profile', placeholder: 'Enter your LinkedIn profile URL'}
     ]
 
-    ]
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import ItemTemplate from "../FormTemplate/ItemTemplate"
 
 function Experience({ experiences, setExperiences }) {
   const [showForm, setShowForm] = useState(false)
@@ -46,4 +47,19 @@ function Experience({ experiences, setExperiences }) {
       placeholder: "Describe your key responsibilities",
     },
   ]
+
+  return (
+    <div className="experience-section">
+      <div className="experience-list">
+        {experiences.map((exp, index) => (
+          <ItemTemplate
+            key={index}
+            title={`${exp.position} at ${exp.company}`}
+            subtitle={`${exp.startDate} - ${exp.endDate || "Present"}`}
+            description={exp.responsibilities}
+          />
+        ))}
+      </div>
+    </div>
+  )
 }

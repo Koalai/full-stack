@@ -41,8 +41,8 @@ function Skills({ skills, setSkills }) {
   }
 
   const handleDelete = (index) => {
-    const newExperiences = skills.filter((_, i) => i !== index)
-    setSkills(newExperiences)
+    const newSkills = skills.filter((_, i) => i !== index)
+    setSkills(newSkills)
   }
 
   const handleCancel = () => {

@@ -5,6 +5,7 @@ import Experience from "./components/experience/Experience"
 import Skills from "./components/skill/Skill"
 import ResumePreview from "./components/ResumePreview/ResumePreview"
 import './components/styles/App.css'
+import OpenSection from "./components/OpenSection/OpenSection"
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -29,20 +30,20 @@ function App() {
           />
         </div>
 
-        <div title="Education">
+        <OpenSection title="Education">
           <Education educations={educations} setEducations={setEducations} />
-        </div>
+        </OpenSection>
 
-        <div title="Work Experience">
+        <OpenSection title="Work Experience">
           <Experience
             experiences={experiences}
             setExperiences={setExperiences}
           />
-        </div>
+        </OpenSection>
 
-        <div title="Skills">
+        <OpenSection title="Skills">
           <Skills skills={skills} setSkills={setSkills} />
-        </div>
+        </OpenSection>
 
       </div>
       <div className="cv-preview">

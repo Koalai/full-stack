@@ -71,7 +71,6 @@ function Skills({ skills, setSkills }) {
       {showForm ? (
         <div>
           <FormTemplate
-            title={editingIndex !== null ? "Edit Skill" : "Add Skill"}
             fields={fields}
             data={skill}
             setData={setSkill}

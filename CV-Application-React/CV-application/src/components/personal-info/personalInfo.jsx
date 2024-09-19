@@ -17,7 +17,6 @@ function PersonalInfo({personalInfo,setPersonalInfo}){
     return (
         <div className="personal-info">
             <FormTemplate
-                title="Personal Information"
                 fields={fields}
                 data={personalInfo}
                 setData={setPersonalInfo}

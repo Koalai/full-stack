@@ -106,11 +106,6 @@ function Experience({ experiences, setExperiences }) {
       {showForm ? (
         <div>
           <FormTemplate
-            title={
-              editingIndex !== null
-                ? "Edit Work Experience"
-                : "Add Work Experience"
-            }
             fields={fields}
             data={experience}
             setData={setExperience}

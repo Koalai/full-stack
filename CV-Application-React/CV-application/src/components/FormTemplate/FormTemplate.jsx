@@ -1,6 +1,6 @@
 import "./FormTemplate.css"
 
-function FormTemplate({ title, fields, data, setData, onSubmit }) {
+function FormTemplate({ fields, data, setData, onSubmit }) {
     
     const handleSubmit = (e) => {
         e.preventDefault(); //prevents the default form submission behavior (which would reload the page).

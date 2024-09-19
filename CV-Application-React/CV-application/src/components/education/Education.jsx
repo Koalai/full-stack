@@ -86,8 +86,6 @@ function Education({educations, setEducations}){
             {showForm ? (
                 <div className="form-container">
                     <FormTemplate
-                    //conditional form rendering
-                        title={editingIndex !== null ? "Edit Education" : "Add Education"}
                         fields={fields}
                         data={education}
                         setData={setEducation}

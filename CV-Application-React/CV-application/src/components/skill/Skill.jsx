@@ -1,7 +1,7 @@
 import { useState } from "react"
 import ItemTemplate from "../FormTemplate/ItemTemplate"
 import FormTemplate from "../FormTemplate/FormTemplate"
-
+import '.././styles/Button.css'
 
 function Skills({ skills, setSkills }) {
   const [showForm, setShowForm] = useState(false)

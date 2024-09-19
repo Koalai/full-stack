@@ -3,6 +3,8 @@ import PersonalInfo from "./components/personal-info/personalInfo"
 import Education from "./components/education/Education"
 import Experience from "./components/experience/Experience"
 import Skills from "./components/skill/Skill"
+import ResumePreview from "./components/ResumePreview/ResumePreview"
+import './components/styles/App.css'
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -27,24 +29,30 @@ function App() {
           />
         </div>
 
-        <div className="education">
+        <div title="Education">
           <Education educations={educations} setEducations={setEducations} />
         </div>
 
-        <div className="work">
+        <div title="Work Experience">
           <Experience
             experiences={experiences}
             setExperiences={setExperiences}
           />
         </div>
 
-        <div className="skill">
+        <div title="Skills">
           <Skills skills={skills} setSkills={setSkills} />
         </div>
-          </div>
-          <div className="cv-preview">
-              
-          </div>
+
+      </div>
+      <div className="cv-preview">
+        <ResumePreview
+          personalInfo={personalInfo}
+          educations={educations}
+          experiences={experiences}
+          skills={skills}
+        />
+      </div>
     </div>
   )
 }

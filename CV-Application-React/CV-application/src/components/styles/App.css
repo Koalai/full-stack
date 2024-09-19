@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set the root and body to full height */
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+}
+
+.App {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 20px;
+  overflow-y: auto;
+  align-items: center;
+}
+
+.cv-preview {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.section, .open-section {
+  margin-bottom: 15px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 90%;
+}
+
+.section {
+  min-height: 200px;
+}
+
+.section-content {
+  padding: 0 15px 15px 15px;
+  border: none;
+}
+
+.section .section-content {
+  display: block;
+  padding: 15px;
+}
+
+
+
+h3 {
+  padding: 15px;
+}

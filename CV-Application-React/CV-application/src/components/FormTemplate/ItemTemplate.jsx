@@ -1,4 +1,4 @@
-import React from 'react';
+
 import './ItemTemplate.css';
 
 function ItemTemplate({ title, subtitle, description, onEdit, onDelete }) {

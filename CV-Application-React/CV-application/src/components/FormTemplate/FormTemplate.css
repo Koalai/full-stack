@@ -19,6 +19,7 @@
     display: block;
     margin-bottom: 5px;
     color: #555;
+    font-weight: 500;
 }
 
 .form-field input,
@@ -28,8 +29,15 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
+.form-field input:focus,
+.form-field textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
 
 .form-field textarea {
     min-height: 100px;
@@ -44,6 +52,8 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
 }
 
 .form-container button:hover {
@@ -54,3 +64,4 @@
     outline: none;
     box-shadow: 0 0 0 2px #07715f;
 }
+

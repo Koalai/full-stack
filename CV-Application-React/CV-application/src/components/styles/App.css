@@ -5,7 +5,8 @@
 }
 
 /* Set the root and body to full height */
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -30,10 +31,15 @@ body {
 .input-section {
   display: flex;
   flex-direction: column;
-  flex: 0.5;
+  flex: 0.7;
   margin-right: 20px;
   overflow-y: auto;
   align-items: center;
+}
+
+.input-section h3 {
+padding: 16px 0 0 20px;
+  font-size: 20px;
 }
 
 .cv-preview {
@@ -41,18 +47,33 @@ body {
   overflow-y: auto;
 }
 
-.section, .open-section {
+.section {
   margin-bottom: 15px;
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
   width: 90%;
-}
-
-.section {
   min-height: 200px;
 }
 
+.open-section {
+  margin-bottom: 15px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 90%;
+  padding: 12px;
+}
+.text-section {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 10px 8px;
+}
+
+.text-section span {
+  font-size: 20px;
+  font-weight: 600;
+}
 
 .section-content {
   padding: 0 15px 15px 15px;
@@ -64,25 +85,7 @@ body {
   padding: 15px;
 }
 
-.paper {
-  width: 90%;
-}
-.open-section div {
-  cursor: pointer;
-  user-select: none;
-  padding: 15px;
-  margin: 0;
-  background-color: white;
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .open-section div span:last-child {
   font-size: 12px;
 }
 
-h3 {
-  padding: 15px;
-}

@@ -42,21 +42,21 @@
 .edit-button {
     background-color: #9a7814;
     color: white;
+    font-weight: 600;
 }
 
 .edit-button:hover {
     background-color: #9a7814;
+    font-weight: 600;
 }
 
 .delete-button {
     background-color: #dc3545;
     color: white;
+    font-weight: 600;
 }
 
 .delete-button:hover {
     background-color: #c82333;
-}
-
-button {
     font-weight: 600;
 }

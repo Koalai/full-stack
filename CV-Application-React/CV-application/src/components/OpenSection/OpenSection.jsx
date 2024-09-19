@@ -1,16 +1,16 @@
 import {useState} from "react";
 
-//function to make a section collapsible
+
 
 function OpenSection({title, children}){
     const [isOpen, setIsOpen] = useState(false);
 
     return(
         <div className="open-section">
-            <h3 onClick={() => setIsOpen(!isOpen)}>
+            <div className="text-section" onClick={() => setIsOpen(!isOpen)}>
                 <span> {title} </span>
                 <span>{isOpen ? '▲' : '▼'} </span>
-            </h3>
+            </div>
             {isOpen && (
                 <div className="section-content">
                 {children}

@@ -21,6 +21,7 @@ const shuffle = (arr) => {
 
 export const CardContainer = ({ score, setScore, best, setBest }) => {
   const [gifs, setGifs] = useState([])
+  const [gifsClicked, setGifsClicked] = useState(new Set())
   // for css
 
   useEffect(() => {
@@ -43,6 +44,19 @@ export const CardContainer = ({ score, setScore, best, setBest }) => {
     }
     fetchGifs()
   }, [])
+
+  const handleClick = (item) => {
+    if (gifsClicked.has(item.id)) {
+      setGifsClicked(new Set())
+      setScore(0)
+      if (score > best) {
+        setBest(score)
+      }
+    } else {
+      setScore(prevScore => prevScore + 1)
+      setGifs(prevGif => shuffle(prevGif))
+    }
+  }
 
 
   return (

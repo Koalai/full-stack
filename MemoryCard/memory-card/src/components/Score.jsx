@@ -1,4 +1,4 @@
-export const Score = (score, best) => {
+export const Score = ({ score, best }) => {
     return (
         <div>
             <p>Score: {score}</p>

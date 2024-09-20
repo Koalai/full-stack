@@ -23,6 +23,7 @@ export const CardContainer = ({ score, setScore, best, setBest }) => {
   const [gifs, setGifs] = useState([])
   const [gifsClicked, setGifsClicked] = useState(new Set())
   // for css
+  const [active, setActive] = useState("active")
 
   useEffect(() => {
     async function fetchGifs() {
@@ -53,11 +54,15 @@ export const CardContainer = ({ score, setScore, best, setBest }) => {
         setBest(score)
       }
     } else {
-      setScore(prevScore => prevScore + 1)
-      setGifs(prevGif => shuffle(prevGif))
+      setScore((prevScore) => prevScore + 1)
     }
+    setActive("inactive")
+    
+    setTimeout(() => {
+      setActive("active")
+      setGifs((prevGif) => shuffle(prevGif))
+    }, 500)
   }
-
 
   return (
     <>

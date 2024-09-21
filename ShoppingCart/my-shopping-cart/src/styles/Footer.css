@@ -1,0 +1,58 @@
+.footerContainer{
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 60px;
+    width: 60vw;
+    margin: 0 auto;
+    height: 30%;
+}
+
+.right {
+    width: 300px;
+    height: 200px;
+}
+
+.right h3 {
+    font-size: 24px;
+}
+
+.right p {
+    font-size:  20px;
+    margin-bottom: 12px;
+}
+
+.right input {
+    height: 20px;
+    margin-right: 10px
+}
+
+.left {
+    display: flex;
+    gap: 60px;
+}
+
+.left h4 {
+    font-size: 24px
+}
+
+.left p {
+    font-size: 20px;
+}
+
+.onlineShopping{
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.helpCentre{
+    display: flex;
+    flex-direction: column;
+    gap: 20px 
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 
+}

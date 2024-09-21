@@ -1,6 +1,6 @@
 img {
-  width: 20px;
-  height: 20px;
+  width: 36px;
+  height: 36px;
 }
 .navContainer {
   display: flex;
@@ -16,4 +16,5 @@ img {
 .navCenter a {
   text-decoration: none;
   color: black;
+  font-size: 24px;
 }

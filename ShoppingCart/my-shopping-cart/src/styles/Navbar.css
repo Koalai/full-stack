@@ -1,0 +1,19 @@
+img {
+  width: 20px;
+  height: 20px;
+}
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 24px;
+}
+.navCenter {
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+}
+
+.navCenter a {
+  text-decoration: none;
+  color: black;
+}

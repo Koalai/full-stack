@@ -2,6 +2,42 @@ import { useState } from "react"
 import ItemTemplate from "../FormTemplate/ItemTemplate"
 import FormTemplate from "../FormTemplate/FormTemplate"
 
+const fields = [
+  {
+    name: "company",
+    type: "text",
+    label: "Company Name",
+    placeholder: "Enter Company Name",
+    required: true,
+  },
+  {
+    name: "position",
+    type: "text",
+    label: "Position Name",
+    placeholder: "Enter Job Title",
+    required: true,
+  },
+  {
+    name: "startDate",
+    type: "date-month",
+    label: "Date of Joining",
+    placeholder: "Select Joining Date",
+    required: true,
+  },
+  {
+    name: "endDate",
+    type: "date-month",
+    label: "Date of Ending",
+    placeholder: "Select Ending Date",
+  },
+  {
+    name: "responsibilities",
+    type: "textarea",
+    label: "Responsibilities",
+    placeholder: "Describe your key responsibilities",
+  },
+]
+
 function Experience({ experiences, setExperiences }) {
   const [showForm, setShowForm] = useState(false)
   const [editingIndex, setEditingIndex] = useState(null)
@@ -12,42 +48,6 @@ function Experience({ experiences, setExperiences }) {
     endDate: "",
     responsibilities: "",
   })
-
-  const fields = [
-    {
-      name: "company",
-      type: "text",
-      label: "Company Name",
-      placeholder: "Enter Company Name",
-      required: true,
-    },
-    {
-      name: "position",
-      type: "text",
-      label: "Position Name",
-      placeholder: "Enter Job Title",
-      required: true,
-    },
-    {
-      name: "startDate",
-      type: "date-month",
-      label: "Date of Joining",
-      placeholder: "Select Joining Date",
-      required: true,
-    },
-    {
-      name: "endDate",
-      type: "date-month",
-      label: "Date of Ending",
-      placeholder: "Select Ending Date",
-    },
-    {
-      name: "responsibilities",
-      type: "textarea",
-      label: "Responsibilities",
-      placeholder: "Describe your key responsibilities",
-    },
-  ]
 
   const handleSubmit = (data) => {
     if (editingIndex !== null) {

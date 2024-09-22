@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect} from "react";
 import { productContext } from "./context/productContext";
 import PropTypes from "prop-types";
 

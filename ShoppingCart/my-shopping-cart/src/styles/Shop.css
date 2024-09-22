@@ -1,0 +1,84 @@
+
+.shopContainer {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.categories{
+    display: flex;
+    gap: 20px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.top select {
+    height: 40px;
+    width: 170px;
+    border-radius: 12px;
+    outline: none;
+}
+
+.main {
+    display: flex;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+}
+
+.imgWrapper img {
+    width: auto;
+    height: 150px;
+}
+
+
+.categories h4 {
+    font-size: 24px;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.product {
+    width: 450px;
+    height: 450px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.product h3 {
+    font-size: 28px;
+}
+
+.addCart{
+    background-color: orange;
+    width: 100%;    
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addCount button{
+    height: 40px;
+    width: 24px
+}
+
+.addCount span {
+    margin: 0 8px;
+}

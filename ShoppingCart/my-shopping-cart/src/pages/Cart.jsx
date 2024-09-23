@@ -19,6 +19,19 @@ function Cart() {
     localStorage.setItem("cart", JSON.stringify(updateCart))
   }
 
+  const checkOut = () => {
+    alert("Thanks for your purchase from our mock stores. Item won't be delivered within the forseable futures.")
+    setStoredCart([]);
+    setCart([]);
+    localStorage.removeItem('cart');
+  }
+
+  const totalPrice = () => {
+    return storageCart.reduce((total, item) => {
+      return Math.floor(total += (item.price * item.quantity))
+    } , 0)
+  }
+
   return (
     <div className="cartContainer">
       <h2>Check Out</h2>
@@ -26,7 +39,7 @@ function Cart() {
       {storageCart.length === 0 && (
         <div className="emptyCart">
           <p>There are no products in your cart at the moment</p>
-          <Link to="/shop">Shop now</Link>
+          <Link to="/shop">Shopping Now </Link>
         </div>
       )}
 
@@ -48,8 +61,8 @@ function Cart() {
         <>
           <hr />
           <div className="checkOut">
-            <p>Total Price:</p>
-            <button>CHECK OUT NOW</button>
+            <p>Total Price: ${totalPrice()}</p>
+            <button onClick={() => checkOut()}>CHECK OUT NOW</button>
           </div>
         </>
       )}

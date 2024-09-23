@@ -38,6 +38,7 @@ function Shop() {
   };
   
   const addCart = (item, quantityToAdd) => {
+    setItemCounts(0)
     if (!item || !item.id) {
         console.error("The item don't pass the right value")
     }

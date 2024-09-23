@@ -1,7 +1,7 @@
 .cartContainer {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap:32px;
   height: 100%;
     flex: 1;
 }
@@ -25,6 +25,8 @@
   gap: 36px;
   width: 60vw;
   margin: 0 auto;
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
 }
 .productCartContainer img {
   width: 150px;
@@ -68,3 +70,4 @@
 .emptyCart a {
     color: black
 }
+

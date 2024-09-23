@@ -1,11 +1,12 @@
 .footerContainer{
     display: flex;
     justify-content: space-between;
-    padding: 40px 150px;
+    padding: 20px 100px 20px 100px;
     margin: 0 auto;
     height: 30%;
-    background-color: rgb(226, 224, 224);
-    margin-top : 40px;
+    background-color: #f7f5f299;
+    margin-top: 20px;
+    width: 80%;
 }
 
 .right {

@@ -2,9 +2,11 @@ import { useContext, useState } from "react"
 import "../styles/Shop.css"
 import { productContext } from "../components/context/productContext"
 import { Link } from "react-router-dom"
+import { cartContext } from "../components/context/productContext"
 
 function Shop() {
   const products = useContext(productContext)
+  const {setCart} = useContext(cartContext)
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [itemCounts, setItemCounts] = useState({})
 
@@ -33,7 +35,23 @@ function Shop() {
             [id]: currentCount - 1 
         };
     });
-};
+  };
+  
+  const addCart = (item, quantityToAdd) => {
+    if (!item || !item.id) {
+        console.error("The item don't pass the right value")
+    }
+    
+    setCart(prevCart => {
+      const existedProduct = prevCart.find(p => p.id === item.id)
+
+      if (!existedProduct) {
+        return [...prevCart, { ...item, quantity: quantityToAdd}]
+      } else {
+        return prevCart.map(p => p.id === item.id ? { ...p, quantity: p.quantity + quantityToAdd } : p)
+      }
+    })
+  }
 
   return (
     <div className="shopContainer">
@@ -77,7 +95,7 @@ function Shop() {
                 </div>
                 <h3>View Details</h3>
                 <div className="addCart">
-                  <h3>Add to Cart</h3>
+                  <h3 onClick={() => addCart(product, itemCounts[product.id])}>Add to Cart</h3>
                 </div>
               </div>
             )

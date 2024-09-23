@@ -15,7 +15,7 @@ export const Navbar = () => {
         <Link to='/shop'>Shop</Link>
       </div>
       <div className='navRight'>
-        <Link to='/cart'>
+        <Link to='/cart' className='cartIconWrapper'>
           <img src='../assets/cart-outline.svg' />
           <CartItemCount cart={cart} />
         </Link>

@@ -1,10 +1,11 @@
 import PropTypes from "prop-types"
 
 export const CartItemCount = ({ cart }) => {
-  const totalQuantity = cart.length
+  const totalQuantity = cart.reduce((total, item) => total += item.quantity, 0);
 
-  return <div>{totalQuantity}</div>
-}
+  return <div className="itemCounter">{totalQuantity}</div>;
+};
+
 
 CartItemCount.propTypes = {
   cart: PropTypes.array.isRequired,

@@ -6,7 +6,7 @@ import { cartContext } from "../components/context/productContext"
 
 function Shop() {
   const products = useContext(productContext)
-  const {setCart} = useContext(cartContext)
+  const { setCart } = useContext(cartContext)
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [itemCounts, setItemCounts] = useState({})
 
@@ -27,29 +27,31 @@ function Shop() {
   }
 
   const decrement = (id) => {
-    setItemCounts(prevCounts => {
-        const currentCount = prevCounts[id] || 0;
-        if (currentCount === 0) return prevCounts; 
-        return {
-            ...prevCounts,
-            [id]: currentCount - 1 
-        };
-    });
-  };
-  
+    setItemCounts((prevCounts) => {
+      const currentCount = prevCounts[id] || 0
+      if (currentCount === 0) return prevCounts
+      return {
+        ...prevCounts,
+        [id]: currentCount - 1,
+      }
+    })
+  }
+
   const addCart = (item, quantityToAdd) => {
     setItemCounts(0)
     if (!item || !item.id) {
-        console.error("The item don't pass the right value")
+      console.error("The item don't pass the right value")
     }
-    
-    setCart(prevCart => {
-      const existedProduct = prevCart.find(p => p.id === item.id)
+
+    setCart((prevCart) => {
+      const existedProduct = prevCart.find((p) => p.id === item.id)
 
       if (!existedProduct) {
-        return [...prevCart, { ...item, quantity: quantityToAdd}]
+        return [...prevCart, { ...item, quantity: quantityToAdd }]
       } else {
-        return prevCart.map(p => p.id === item.id ? { ...p, quantity: p.quantity + quantityToAdd } : p)
+        return prevCart.map((p) =>
+          p.id === item.id ? { ...p, quantity: p.quantity + quantityToAdd } : p
+        )
       }
     })
   }
@@ -84,7 +86,7 @@ function Shop() {
               <div className="product" key={product.id}>
                 <h3>{product.title}</h3>
                 <div className="imgWrapper">
-                  <Link to={`productInfo/${product.id}`}>
+                  <Link to={`/productInfo/${product.id}`}>
                     <img alt="product" src={product.image} />
                   </Link>
                 </div>
@@ -94,9 +96,13 @@ function Shop() {
                   <span>{itemCounts[product.id] || 0}</span>
                   <button onClick={() => increment(product.id)}>+</button>
                 </div>
-                <h3>View Details</h3>
+                <Link to={`/productInfo/${product.id}`}>
+                  <h3>View Details</h3>
+                </Link>
                 <div className="addCart">
-                  <h3 onClick={() => addCart(product, itemCounts[product.id])}>Add to Cart</h3>
+                  <h3 onClick={() => addCart(product, itemCounts[product.id])}>
+                    Add to Cart
+                  </h3>
                 </div>
               </div>
             )

@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-custom {
+    @apply block border border-gray-300 rounded mt-1 h-7 w-3/4 ; /* Sử dụng Tailwind để áp dụng các lớp */
+}
+

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.img-custom {
+    @apply w-10 h-auto
+}
+
+.icon-sidebar {
+    @apply flex items-center gap-4
+}
+
+.header-btn {
+    @apply bg-blue-500 rounded-2xl px-8 py-1 text-lg text-white
+}
+
+.img-trend-custom {
+    @apply w-10 h-10 rounded-full
+}

@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form-btn {
+    @apply px-3 py-2 bg-blue-500 rounded-lg text-white font-bold hover:bg-blue-700
+}
+
+.cancel-btn {
+    @apply px-3 py-2 bg-red-600 rounded-lg text-white font-bold hover:bg-red-700
+}
+
+.input-form {
+    @apply border-2 border-gray-300 p-2 rounded-md focus:outline focus:outline-2 focus:outline-blue-500 focus:border-transparent
+}

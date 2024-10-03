@@ -2,14 +2,17 @@ import { useState } from "react"
 import { Board } from "./components/Board"
 import Modal from "react-modal"
 
+Modal.setAppElement('#root');
+
 function App() {
   const [player1, setPlayer1] = useState("")
   const [player2, setPlayer2] = useState("")
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [gameStarted, setGameStarted] = useState(false)
-  const [winner, setWinner] = useState("")
+ 
 
-  const startGame = () => {
+  const startGame = (e) => {
+   e.preventDefault()
     if (player1 && player2) {
       setGameStarted(true)
       setModalIsOpen(false)
@@ -21,8 +24,7 @@ function App() {
     <div className="flex flex-col items-center gap-20 justify-center mt-12">
       <h1 className="text-4xl font-bold">Tic Tac Toe Game</h1>
 
-
-      <Board player1={player1} player2={player2}  />
+      <Board player1={player1} player2={player2} setModalIsOpen={setModalIsOpen} />
       {!gameStarted && (
         <Modal
           isOpen={modalIsOpen}

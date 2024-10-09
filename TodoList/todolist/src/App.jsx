@@ -18,7 +18,7 @@ function App() {
     <div
       className={` App ${
         isNightMode ? "bg-gray-800 text-white" : "bg-white text-slate-600"
-      } flex`}
+      } flex `}
     >
       <ProjectsProvider>
         <Sidebar
@@ -27,7 +27,7 @@ function App() {
           expanded={expanded}
           setExpanded={setExpanded}
         >
-          <SidebarItems icon={<House size={40} />} text="All Task" />
+          <SidebarItems icon={<House size={40} />} text="All Task"  />
           <SidebarItems icon={<CalendarCheck size={40} />} text="Today" />
           <SidebarItems icon={<CalendarDays size={40} />} text="This Week" />
           <hr className="w-full" />

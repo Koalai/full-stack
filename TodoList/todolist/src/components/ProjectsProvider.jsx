@@ -3,27 +3,26 @@ import { ProjectsContext } from '../context/projectsContext';
 import { useState, useEffect } from 'react';
 
 export const ProjectsProvider = ({ children }) => {
-  const [projects, setProjects] = useState([]);
-  const [projectSelected, setProjectSelected] = useState(null);
+  const [projectSelected, setProjectSelected] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [currentSection, setCurrentSection] = useState("")
+  const [projects, setProjects] = useState(() => {
+    const storedProjects = localStorage.getItem('projects')
+    return storedProjects ? JSON.parse(storedProjects) : []
+  });
 
   useEffect(() => {
-    const storedProjects = localStorage.getItem('projects');
-    if (storedProjects) {
-      setProjects(JSON.parse(storedProjects));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (projects.length > 0) {
       localStorage.setItem('projects', JSON.stringify(projects));
-    }
   }, [projects]);
 
+  const selectSection = (section) => {
+    setCurrentSection(section)
+  }
 
 
   return (
     <ProjectsContext.Provider
-      value={{ projects, setProjects, projectSelected, setProjectSelected }}
+      value={{ projects, setProjects, projectSelected, setProjectSelected, tasks, setTasks, selectSection, currentSection ,setCurrentSection}}
     >
       {children}
     </ProjectsContext.Provider>

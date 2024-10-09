@@ -10,7 +10,7 @@ import { SidebarItems } from './SidebarItems';
 import { ProjectsContext } from '../context/projectsContext';
 
 export const ProjectSection = ({ expanded }) => {
-  const { projects, setProjects, projectSelectked, setProjectSelected } = useContext(ProjectsContext);
+  const { projects, setProjects, projectSelected, setProjectSelected } = useContext(ProjectsContext);
   const [projectExpanded, setProjectExpanded] = useState(false);
   const [projectFormOpened, setProjectFormOpened] = useState(false);
   const [showOptionsId, setShowOptionsId] = useState(null);
@@ -58,6 +58,7 @@ export const ProjectSection = ({ expanded }) => {
   const handleRemove = (id) => {
     const remainProjects = projects.filter((p) => p.id !== id);
     setProjects(remainProjects);
+    setProjectSelected("")
   };
 
   const onRename = () => {
@@ -82,7 +83,6 @@ export const ProjectSection = ({ expanded }) => {
   };
 
   const handleProjectClicked = (project) => {
-    console.log(project)
     setProjectSelected(project)
   }
 
@@ -107,7 +107,7 @@ export const ProjectSection = ({ expanded }) => {
           } relative`}
         >
           <div className='overflow-visible'>
-            {' '}
+            
             {projects.map((project) => {
               return (
                 <div

@@ -12,6 +12,8 @@ import logoWhite from "../assets/logoWhite.svg"
 import logoBlack from "../assets/logoBlack.svg"
 import { SidebarContext } from "../context/sidebarContext"
 import ProjectSection from "./ProjectSection"
+import { useContext } from "react"
+import { ProjectsContext } from "../context/projectsContext"
 
 export const Sidebar = ({
   children,
@@ -20,38 +22,45 @@ export const Sidebar = ({
   expanded,
   setExpanded,
 }) => {
+
+  const {selectSection} = useContext(ProjectsContext)
+
   const handleExpanded = () => {
     setExpanded(!expanded)
+  }
+
+  const handleItemClicked = (section) => {
+    selectSection(section)
   }
 
   return (
     <nav
       className={`border-r flex flex-col h-full ${
-        expanded ? "w-2/5" : "w-20"
+        expanded ? 'w-2/5' : 'w-20'
       } shadow-md min-h-screen`}
     >
-      <div className="flex pt-4 px-4 justify-between">
+      <div className='flex pt-4 px-4 justify-between'>
         <img
           src={`${isNightMode ? logoWhite : logoBlack}`}
           className={`overflow-hidden transition-all h-8 ${
-            expanded ? "w-28" : "w-0"
+            expanded ? 'w-28' : 'w-0'
           } h-auto text-white`}
         />
         <button
           onClick={toggleNightMode}
           className={`p-1.5 rounded-lg ${
             isNightMode
-              ? "bg-gray-700 hover:bg-gradient-blue hover:text-white"
-              : "bg-gray-50 hover:bg-gradient-blue hover:text-white"
-          } overflow-hidden transition-all ${expanded ? "block" : "hidden"}`}
+              ? 'bg-gray-700 hover:bg-gradient-blue hover:text-white'
+              : 'bg-gray-50 hover:bg-gradient-blue hover:text-white'
+          } overflow-hidden transition-all ${expanded ? 'block' : 'hidden'}`}
         >
           {isNightMode ? <Sun /> : <Moon />}
         </button>
         <button
           className={`p-1.5 rounded-lg ${
             isNightMode
-              ? "bg-gray-700 hover:bg-gradient-blue hover:text-white"
-              : "bg-gray-50 hover:bg-gradient-blue hover:text-white"
+              ? 'bg-gray-700 hover:bg-gradient-blue hover:text-white'
+              : 'bg-gray-50 hover:bg-gradient-blue hover:text-white'
           }`}
           onClick={handleExpanded}
         >
@@ -59,31 +68,31 @@ export const Sidebar = ({
         </button>
       </div>
       <div className={`flex-1 mt-6`}>
-        <SidebarContext.Provider value={expanded}>
+        <SidebarContext.Provider value={{expanded, handleItemClicked}}>
           <ul className={`flex flex-col gap-8 item-center justify-center`}>
             {children}
             <ProjectSection expanded={expanded} />
           </ul>
         </SidebarContext.Provider>
       </div>
-      <div className="border-t flex p-2 items-center gap-4">
-        <img src={profileAva} className="w-12 rounded-lg" />
+      <div className='border-t flex p-2 items-center gap-4'>
+        <img src={profileAva} className='w-12 rounded-lg' />
         <div
           className={`flex justify-between transition-all overflow-hidden ${
-            expanded ? "w-4/5" : "w-0"
+            expanded ? 'w-4/5' : 'w-0'
           }`}
         >
           <div className={`flex flex-col justify-center font-black`}>
-            <p className="text-xl">Koalai</p>
-            <p className="text-sm text-gray-500">
+            <p className='text-xl'>Koalai</p>
+            <p className='text-sm text-gray-500'>
               dangkhoanguyen0812@gmail.com
             </p>
           </div>
           <button
             className={`p-1.5 rounded-lg ${
               isNightMode
-                ? "bg-gray-700 hover:bg-gradient-blue hover:text-white"
-                : "bg-gray-50 hover:bg-gradient-blue hover:text-white"
+                ? 'bg-gray-700 hover:bg-gradient-blue hover:text-white'
+                : 'bg-gray-50 hover:bg-gradient-blue hover:text-white'
             }`}
           >
             <MoreVertical />
@@ -91,7 +100,7 @@ export const Sidebar = ({
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
 Sidebar.propTypes = {

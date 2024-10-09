@@ -7,7 +7,7 @@ const TaskList = ({ tasks }) => {
       {tasks.map((task) => (
         <div
           key={task.id}
-          className='flex justify-between px-4 border border-black rounded-md shadow-md'
+          className='flex justify-between items-center px-4 border border-black rounded-md shadow-md'
         >
           <div className='flex flex-col'>
             <div className='flex gap-2 text-xl'>

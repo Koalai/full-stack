@@ -12,8 +12,7 @@ import logoWhite from "../assets/logoWhite.svg"
 import logoBlack from "../assets/logoBlack.svg"
 import { SidebarContext } from "../context/sidebarContext"
 import ProjectSection from "./ProjectSection"
-import { useContext } from "react"
-import { ProjectsContext } from "../context/projectsContext"
+
 
 export const Sidebar = ({
   children,
@@ -21,16 +20,13 @@ export const Sidebar = ({
   isNightMode,
   expanded,
   setExpanded,
+  selectedSection,
+  setSelectedSection
 }) => {
 
-  const {selectSection} = useContext(ProjectsContext)
 
   const handleExpanded = () => {
     setExpanded(!expanded)
-  }
-
-  const handleItemClicked = (section) => {
-    selectSection(section)
   }
 
   return (
@@ -68,7 +64,7 @@ export const Sidebar = ({
         </button>
       </div>
       <div className={`flex-1 mt-6`}>
-        <SidebarContext.Provider value={{expanded, handleItemClicked}}>
+        <SidebarContext.Provider value={{expanded, selectedSection, setSelectedSection}}>
           <ul className={`flex flex-col gap-8 item-center justify-center`}>
             {children}
             <ProjectSection expanded={expanded} />

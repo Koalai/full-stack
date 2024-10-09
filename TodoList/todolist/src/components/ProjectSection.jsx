@@ -8,9 +8,11 @@ import {
 } from 'lucide-react';
 import { SidebarItems } from './SidebarItems';
 import { ProjectsContext } from '../context/projectsContext';
+import { SidebarContext } from '../context/sidebarContext';
 
 export const ProjectSection = ({ expanded }) => {
-  const { projects, setProjects, projectSelected, setProjectSelected } = useContext(ProjectsContext);
+  const { projects, setProjects, setProjectSelected} = useContext(ProjectsContext);
+  const {setSelectedSection} = useContext(SidebarContext)
   const [projectExpanded, setProjectExpanded] = useState(false);
   const [projectFormOpened, setProjectFormOpened] = useState(false);
   const [showOptionsId, setShowOptionsId] = useState(null);
@@ -84,6 +86,7 @@ export const ProjectSection = ({ expanded }) => {
 
   const handleProjectClicked = (project) => {
     setProjectSelected(project)
+    setSelectedSection("")
   }
 
 

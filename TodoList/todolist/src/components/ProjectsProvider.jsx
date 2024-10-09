@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 export const ProjectsProvider = ({ children }) => {
   const [projectSelected, setProjectSelected] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [currentSection, setCurrentSection] = useState("")
   const [projects, setProjects] = useState(() => {
     const storedProjects = localStorage.getItem('projects')
     return storedProjects ? JSON.parse(storedProjects) : []
@@ -15,14 +14,10 @@ export const ProjectsProvider = ({ children }) => {
       localStorage.setItem('projects', JSON.stringify(projects));
   }, [projects]);
 
-  const selectSection = (section) => {
-    setCurrentSection(section)
-  }
-
 
   return (
     <ProjectsContext.Provider
-      value={{ projects, setProjects, projectSelected, setProjectSelected, tasks, setTasks, selectSection, currentSection ,setCurrentSection}}
+      value={{ projects, setProjects, projectSelected, setProjectSelected, tasks, setTasks}}
     >
       {children}
     </ProjectsContext.Provider>

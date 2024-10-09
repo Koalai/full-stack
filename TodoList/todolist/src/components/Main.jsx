@@ -2,16 +2,11 @@ import PropTypes from 'prop-types';
 import { useContext, useState, useEffect } from 'react';
 import { ProjectsContext } from '../context/projectsContext';
 import TaskList from './Task';
+import { TaskForm } from './TaskForm';
 
-export const Main = ({ expanded }) => {
-  const {
-    projectSelected,
-    tasks,
-    setTasks,
-    currentSection,
-    projects,
-    setProjectSelected,
-  } = useContext(ProjectsContext);
+export const Main = ({ expanded, selectedSection, setSelectedSection }) => {
+  const { projectSelected, tasks, setTasks, projects, setProjectSelected } =
+    useContext(ProjectsContext);
   const [isTaskFormOpened, setIsTaskFormOpened] = useState(false);
 
   const [task, setTask] = useState({
@@ -43,7 +38,7 @@ export const Main = ({ expanded }) => {
     closeTaskForm();
   };
 
-  const filteredTasks = currentSection
+  const filteredTasks = selectedSection
     ? tasks
     : tasks.filter((task) => task.projectId === projectSelected.id);
 
@@ -53,81 +48,33 @@ export const Main = ({ expanded }) => {
         expanded ? 'w-4/5' : 'flex-1'
       }`}
     >
-      {projectSelected !== '' && (
-        <div className='w-full'>
-          <div className='bg-green-600 rounded-md h-1/6 flex justify-center items-center text-white font-black text-4xl'>
-            <h1>{projectSelected.name}</h1>
-          </div>
-          <TaskList tasks={filteredTasks} />
-
-          {isTaskFormOpened && (
-            <form className='bg-white rounded-md shadow-md px-8 py-4'>
-              <div className='flex flex-col gap-2'>
-                <label htmlFor='title'>Title:</label>
-                <input
-                  type='text'
-                  placeholder='What to do?'
-                  className='border h-10 px-2'
-                  value={task.title}
-                  onChange={(e) =>
-                    setTask({ ...task, ['title']: e.target.value })
-                  }
-                  required
-                />
-              </div>
-              <div className='flex flex-col gap-2'>
-                <label htmlFor='descriptions'>Descriptions:</label>
-                <input
-                  type='text'
-                  placeholder="I'm just gonna write something here, right?"
-                  className='border h-16 px-2'
-                  value={task.descriptions}
-                  onChange={(e) =>
-                    setTask({ ...task, ['descriptions']: e.target.value })
-                  }
-                  required
-                />
-              </div>
-              <div className='flex flex-col gap-2'>
-                <label htmlFor='date'>Date:</label>
-                <input
-                  type='date'
-                  className='border px-2 h-10'
-                  value={task.dueDate}
-                  onChange={(e) =>
-                    setTask({ ...task, ['dueDate']: e.target.value })
-                  }
-                />
-              </div>
-              <div className='flex justify-center gap-16 mt-4'>
-                <button
-                  type='button'
-                  className='py-1 px-2 w-16 rounded-lg text-white font-bold bg-green-600 hover:bg-green-700'
-                  onClick={addTask}
-                >
-                  Add
-                </button>
-                <button
-                  type='button'
-                  className='py-1 px-2 w-16 rounded-lg text-white font-bold bg-red-600 hover:bg-red-700'
-                  onClick={closeTaskForm}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          )}
-          <button
-            className='flex gap-4 mt-8 w-full hover:bg-white rounded-md py-2 px-4'
-            onClick={openTaskForm}
-          >
-            <span className='w-6 h-6 flex justify-center items-center font-bold rounded-full border border-black '>
-              +
-            </span>
-            Add task
-          </button>
+      <div className='w-full'>
+        <div className='bg-green-600 rounded-md h-1/6 flex justify-center items-center text-white font-black text-4xl'>
+          <h1>{selectedSection ? selectedSection : projectSelected.name}</h1>
         </div>
-      )}
+        <TaskList tasks={filteredTasks} />
+        {projectSelected !== '' && (
+          <div>
+            {isTaskFormOpened && (
+              <TaskForm
+                task={task}
+                setTask={setTask}
+                closeTaskForm={closeTaskForm}
+                addTask={addTask}
+              />
+            )}
+            <button
+              className='flex gap-4 mt-8 w-full hover:bg-white rounded-md py-2 px-4'
+              onClick={openTaskForm}
+            >
+              <span className='w-6 h-6 flex justify-center items-center font-bold rounded-full border border-black '>
+                +
+              </span>
+              Add task
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

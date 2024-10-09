@@ -27,8 +27,8 @@ export const Sidebar = ({
   return (
     <nav
       className={`border-r flex flex-col h-full ${
-        expanded ? "w-1/5" : "w-20"
-      } shadow-md h-screen`}
+        expanded ? "w-2/5" : "w-20"
+      } shadow-md min-h-screen`}
     >
       <div className="flex pt-4 px-4 justify-between">
         <img
